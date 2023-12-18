@@ -3,7 +3,9 @@ package com.pong.pingpong;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+
+import javafx.scene.layout.Pane;
+
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,33 +18,34 @@ public class PongFX extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-        StackPane root = new StackPane();
+
+        int window_height = 480;
+        int window_width = 854;
+
+        Pane root = new Pane();
 
 
-        Racquet player = new RacquetPlayer("Player", 100);
+        Racquet player = new RacquetPlayer("Player", 10);
         root.getChildren().add(player.getRacquet());
 
+        Wall upper_wall = new Wall(50, window_width);
+        root.getChildren().add(upper_wall.getWall());
 
-        root.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
+        Wall lower_wall = new Wall(470, window_width);
+        root.getChildren().add(lower_wall.getWall());
 
-                case Q:
-                    player.moveUp();
-                break;
 
-                case Z:
-                    player.moveDown();
-                break;
-            }
-        });
+        Scene scene = new Scene(root, window_width, window_height, Color.DIMGRAY);
 
-        Scene scene = new Scene(root, 854, 480);
+
+        scene.setOnKeyPressed(event -> player.move( event.getCode() ) );
+
+
+        root.requestFocus();//nó StackPane recebe eventos do teclado
+
+
         primaryStage.setTitle("Pong FX");
         primaryStage.setScene(scene);
-
-        //nó StackPane recebe eventos do teclado
-        root.requestFocus();
-
         primaryStage.show();
     }
 
