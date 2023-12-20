@@ -10,12 +10,10 @@ public abstract class Racquet{
     private double py;
     private int height;
     private int width;
-    private int speed;
     protected Rectangle racquet;
 
     public Racquet(String name){
         this.name = name;
-        speed = 2;
         width = 10;
         height = 60;
         racquet = new Rectangle(width, height, Color.BLACK);
