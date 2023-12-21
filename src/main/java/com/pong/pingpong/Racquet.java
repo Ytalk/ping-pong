@@ -26,12 +26,12 @@ public abstract class Racquet{
     }
 
     public void moveUp(){
-        py = py - 7.5;
+        py = py - 6.5;
         racquet.setTranslateY(py);
     }
 
     public void moveDown(){
-        py = py + 7.5;
+        py = py + 6.5;
         racquet.setTranslateY(py);
     }
 
