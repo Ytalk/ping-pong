@@ -2,22 +2,24 @@ package com.pong.pingpong;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.input.KeyCode;
 
 public abstract class Racquet{
 
     private String name;
-    private double py;
+    protected double py;
+    private int px;
     private int height;
     private int width;
-    protected Rectangle racquet;
+    private Rectangle racquet;
 
-    public Racquet(String name){
+    public Racquet(String name, int positionX){
         this.name = name;
         width = 10;
         height = 60;
         racquet = new Rectangle(width, height, Color.BLACK);
         py = 200;
+        px = positionX;
+        racquet.setX(px);
         racquet.setTranslateY(py);
     }
 
@@ -26,29 +28,16 @@ public abstract class Racquet{
     }
 
     public void moveUp(){
-        py = py - 6.5;
+        py = py - 5.5;
         racquet.setTranslateY(py);
     }
 
     public void moveDown(){
-        py = py + 6.5;
+        py = py + 5.5;
         racquet.setTranslateY(py);
     }
 
-    public void move(KeyCode key){
 
-        switch(key){
-            case Q:
-                if(py > 60)
-                    moveUp();
-            break;
-
-            case Z:
-                if(py < 405)
-                    moveDown();
-            break;
-        }
-    }
 
 
 

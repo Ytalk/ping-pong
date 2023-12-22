@@ -23,6 +23,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.geometry.Insets;
 import javafx.scene.layout.CornerRadii;
 
+import java.util.Set;
+import javafx.scene.input.KeyCode;
+import java.util.HashSet;
+
 public class PongFX extends Application{
     public static void main(String[] args){
         launch(args);
@@ -37,7 +41,7 @@ public class PongFX extends Application{
     @Override
     public void start(Stage primaryStage){
 
-        Button play_button = new Button("PLay");
+        Button play_button = new Button("PLay PvP");
         Button exit_button = new Button("Exit");
 
         play_button.setOnAction(e -> play_scene(primaryStage) );
@@ -67,8 +71,11 @@ public class PongFX extends Application{
         Scene pong_scene = new Scene(play_panel, window_width, window_height);
 
 
-        RacquetPlayer player = new RacquetPlayer("Player", 10);
+        RacquetPlayer player = new RacquetPlayer("Player 1", 10, true);
         play_panel.getChildren().add(player.getRacquet());
+
+        RacquetPlayer player2 = new RacquetPlayer("Player 2", 834, false);
+        play_panel.getChildren().add(player2.getRacquet());
 
         Wall upper_wall = new Wall(50, window_width);
         play_panel.getChildren().add(upper_wall.getWall());
@@ -80,10 +87,26 @@ public class PongFX extends Application{
         play_panel.getChildren().add(ball.getBall());
 
 
-        pong_scene.setOnKeyPressed(event -> player.move( event.getCode() ) );//jogador se movimenta
+        //pong_scene.setOnKeyPressed(event -> player.move( event.getCode() ) );//jogador se movimenta
+        //pong_scene.setOnKeyPressed(event -> player2.move( event.getCode() ) );
+
+        Set<KeyCode> keysPressed = new HashSet<>();
+
+        pong_scene.setOnKeyPressed(event -> {
+            keysPressed.add(event.getCode());
+            player.handleKeyPressed(keysPressed);
+            player2.handleKeyPressed(keysPressed);
+        });
+
+        pong_scene.setOnKeyReleased(event -> {
+            keysPressed.remove(event.getCode());
+            player.handleKeyReleased(keysPressed);
+            player2.handleKeyReleased(keysPressed);
+        });
 
 
-        collisionSystem collision = new collisionSystem(ball, lower_wall, upper_wall, player);
+
+        collisionSystem collision = new collisionSystem(ball, lower_wall, upper_wall, player, player2);
         collision.inertia();//comportamento da bola, colisões e movimento
 
 
