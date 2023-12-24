@@ -22,7 +22,7 @@ public class Ball{
         px = centerX;
         py = centerY;
         this.radius = radius;
-        speed = 1;
+        speed = 2;
         ball = new Circle(px, py, radius, Color.BLUE);
     }
 
@@ -41,7 +41,9 @@ public class Ball{
 
 
     public void speedUp(){
-        speed += 1;
+        if(speed < 15){
+            speed += 0.8;
+        }
     }
 
 
@@ -54,5 +56,10 @@ public class Ball{
         return nodeA.getBoundsInParent().intersects(nodeB.getBoundsInParent());
     }
 
+    public void draw(){
+        speed = 2;
+        ball.setCenterX(400);
+        ball.setCenterY(200);
+    }
 
 }

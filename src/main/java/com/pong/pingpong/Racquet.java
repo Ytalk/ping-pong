@@ -38,7 +38,9 @@ public abstract class Racquet{
     }
 
 
-
+    public String getName(){
+        return name;
+    }
 
 
 }

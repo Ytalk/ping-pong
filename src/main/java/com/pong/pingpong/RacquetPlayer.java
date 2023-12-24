@@ -3,6 +3,8 @@ package com.pong.pingpong;
 import javafx.scene.input.KeyCode;
 import java.util.Set;
 
+import javafx.scene.input.KeyEvent;
+
 public class RacquetPlayer extends Racquet{
 
     boolean control1;
@@ -18,7 +20,7 @@ public class RacquetPlayer extends Racquet{
 
         if(control1 == true){
             if(keysPressed.contains(KeyCode.Q)) {
-                if (py > 60)
+                if (py > 10)
                     moveUp();
             }
             if(keysPressed.contains(KeyCode.Z)){
@@ -29,7 +31,7 @@ public class RacquetPlayer extends Racquet{
 
         if(control1 == false){
             if(keysPressed.contains(KeyCode.O)) {
-                if (py > 60)
+                if (py > 10)
                     moveUp();
             }
             if (keysPressed.contains(KeyCode.M)) {
@@ -42,8 +44,8 @@ public class RacquetPlayer extends Racquet{
 
 
 
-    public void handleKeyReleased(Set<KeyCode> keysPressed){
-        keysPressed = null;
+    public void handleKeyReleased(Set<KeyCode> keysPressed, KeyEvent event){
+        keysPressed.remove(event.getCode());
     }
 
 

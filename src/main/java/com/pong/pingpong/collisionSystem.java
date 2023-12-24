@@ -12,6 +12,10 @@ import java.util.Set;
 import javafx.scene.input.KeyCode;
 import java.util.HashSet;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.AnimationTimer;
+
+
 public class collisionSystem{
 
     double deltaX = -1;  //start final
@@ -32,26 +36,26 @@ public class collisionSystem{
     }
 
 
-    public void inertia() {
+    public void inertia(Scoreboard scoreboard) {
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (ball.checkCollision(player.getRacquet(), ball.getBall()) || ball.checkCollision(player2.getRacquet(), ball.getBall())) {
+                    deltaX = deltaX * -1;
+                    ball.speedUp();
+                }
 
-        Timeline pingpong = new Timeline(new KeyFrame(Duration.millis(20), event -> {
+                if (ball.checkCollision(lower_wall.getWall(), ball.getBall()) || ball.checkCollision(upper_wall.getWall(), ball.getBall())) {
+                    deltaY = deltaY * -1;
+                }
 
-            if (ball.checkCollision(player.getRacquet(), ball.getBall()) || ball.checkCollision(player2.getRacquet(), ball.getBall())) {
-                deltaX = deltaX * -1;
-                ball.speedUp();
+                ball.move(deltaX, deltaY);
+
+                scoreboard.setScore();
             }
-
-            if (ball.checkCollision(lower_wall.getWall(), ball.getBall()) || ball.checkCollision(upper_wall.getWall(), ball.getBall())) {
-                deltaY = deltaY * -1;
-            }
-
-            ball.move(deltaX, deltaY);
-        }));
-
-        pingpong.setCycleCount(Timeline.INDEFINITE);
-        pingpong.play();
-
+        }.start();
     }
+
 
 
 

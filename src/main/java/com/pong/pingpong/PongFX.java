@@ -41,7 +41,7 @@ public class PongFX extends Application{
     @Override
     public void start(Stage primaryStage){
 
-        Button play_button = new Button("PLay PvP");
+        Button play_button = new Button("Play PvP");
         Button exit_button = new Button("Exit");
 
         play_button.setOnAction(e -> play_scene(primaryStage) );
@@ -68,7 +68,6 @@ public class PongFX extends Application{
 
         Pane play_panel = new Pane();
         play_panel.setBackground(new Background(new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-        Scene pong_scene = new Scene(play_panel, window_width, window_height);
 
 
         RacquetPlayer player = new RacquetPlayer("Player 1", 10, true);
@@ -77,7 +76,7 @@ public class PongFX extends Application{
         RacquetPlayer player2 = new RacquetPlayer("Player 2", 834, false);
         play_panel.getChildren().add(player2.getRacquet());
 
-        Wall upper_wall = new Wall(50, window_width);
+        Wall upper_wall = new Wall(0, window_width);
         play_panel.getChildren().add(upper_wall.getWall());
 
         Wall lower_wall = new Wall(470, window_width);
@@ -87,8 +86,12 @@ public class PongFX extends Application{
         play_panel.getChildren().add(ball.getBall());
 
 
-        //pong_scene.setOnKeyPressed(event -> player.move( event.getCode() ) );//jogador se movimenta
-        //pong_scene.setOnKeyPressed(event -> player2.move( event.getCode() ) );
+        Scoreboard scoreboard = new Scoreboard( player.getName(), player2.getName(), ball );
+
+        Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel) );//retirado o tamanho.
+
+        scoreboard.setSceneWidth(window_width);
+
 
         Set<KeyCode> keysPressed = new HashSet<>();
 
@@ -100,19 +103,18 @@ public class PongFX extends Application{
 
         pong_scene.setOnKeyReleased(event -> {
             keysPressed.remove(event.getCode());
-            player.handleKeyReleased(keysPressed);
-            player2.handleKeyReleased(keysPressed);
+            player.handleKeyReleased(keysPressed, event);
+            player2.handleKeyReleased(keysPressed, event);
         });
 
 
 
         collisionSystem collision = new collisionSystem(ball, lower_wall, upper_wall, player, player2);
-        collision.inertia();//comportamento da bola, colisões e movimento
+        collision.inertia(scoreboard );//comportamento da bola, colisões e movimento
+
 
 
         primaryStage.setScene(pong_scene);
-
-
         play_panel.requestFocus();//nó recebe eventos do teclado focado
 
     }
