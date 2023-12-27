@@ -1,16 +1,13 @@
 package com.pong.pingpong;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.Node;
+import javafx.scene.paint.Color;
 
 
 public class Ball{
 
-    private double dx;
-    private double dy;
-    private double acceleration;
+    private boolean dx;
+    private boolean dy;
 
     private double px;
     private double py;
@@ -32,6 +29,11 @@ public class Ball{
     }
 
 
+    public double getSpeed(){
+        return speed;
+    }
+
+
     public void move(double dx, double dy){
         dy = getSpeed() * dy;
         dx = getSpeed() * dx;
@@ -47,19 +49,16 @@ public class Ball{
     }
 
 
-    public double getSpeed(){
-        return speed;
+    public void draw(Racquet racquet){
+        speed = 0;
+        ball.setCenterX(racquet.ServeX());
+        ball.setCenterY(racquet.ServeY());
     }
 
 
-    public boolean checkCollision(Node nodeA, Node nodeB){
-        return nodeA.getBoundsInParent().intersects(nodeB.getBoundsInParent());
-    }
-
-    public void draw(){
+    public void hurl(){
         speed = 2;
-        ball.setCenterX(400);
-        ball.setCenterY(200);
     }
+
 
 }

@@ -1,34 +1,27 @@
 package com.pong.pingpong;
 
-import javafx.animation.Timeline;
-import javafx.util.Duration;
-import javafx.animation.KeyFrame;
-
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.Node;
-
-import java.util.Set;
-import javafx.scene.input.KeyCode;
-import java.util.HashSet;
-
-import javafx.animation.PauseTransition;
 import javafx.animation.AnimationTimer;
 
+import javafx.geometry.Bounds;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
-public class collisionSystem{
+
+public class CollisionSystem{
 
     double deltaX = -1;  //start final
     double deltaY = 0.5;
 
-    Ball ball;
     Wall lower_wall;
     Wall upper_wall;
     Racquet player;
     Racquet player2;
 
-    public collisionSystem(Ball ball, Wall lower_wall, Wall upper_wall, Racquet player, Racquet player2){
-        this.ball = ball;
+    int count = 0;
+
+
+    public CollisionSystem(Wall lower_wall, Wall upper_wall, Racquet player, Racquet player2){
         this.lower_wall = lower_wall;
         this.upper_wall = upper_wall;
         this.player = player;
@@ -36,27 +29,73 @@ public class collisionSystem{
     }
 
 
-    public void inertia(Scoreboard scoreboard) {
-        new AnimationTimer() {
+    public boolean areBoundsOverlapping(Bounds bounds1, Bounds bounds2) {
+        return bounds1.intersects(bounds2);
+    }
+
+    public boolean areShapesOverlapping(Rectangle rectangle, Circle circle) {
+        Bounds rectangleBounds = rectangle.getBoundsInParent();
+        Bounds circleBounds = circle.getBoundsInParent();
+
+        return areBoundsOverlapping(rectangleBounds, circleBounds);
+    }
+
+
+    public boolean checkCollision(Node nodeA, Node nodeB){
+        return nodeA.getBoundsInParent().intersects( nodeB.getBoundsInParent() );
+    }
+
+
+    public void inertia(Scoreboard scoreboard, Ball ball){
+
+        new AnimationTimer(){
+
             @Override
-            public void handle(long now) {
-                if (ball.checkCollision(player.getRacquet(), ball.getBall()) || ball.checkCollision(player2.getRacquet(), ball.getBall())) {
+            public void handle(long now){
+                if(  checkCollision( player.getRacquet(), ball.getBall() )  ||  checkCollision( player2.getRacquet(), ball.getBall() )  ){
                     deltaX = deltaX * -1;
                     ball.speedUp();
                 }
 
-                if (ball.checkCollision(lower_wall.getWall(), ball.getBall()) || ball.checkCollision(upper_wall.getWall(), ball.getBall())) {
+                if(  checkCollision( lower_wall.getWall(), ball.getBall() )  ||  checkCollision( upper_wall.getWall(), ball.getBall() )  ){
                     deltaY = deltaY * -1;
                 }
 
+
+                //FUNÇÃO DE SAQUE (IN PROGRESS)
+                if( player.getServe() ){
+                    while(count < 100) {
+                        ball.draw(player);
+                        if (!player.getServe()) {
+                            player.setServe(false);
+                            break;
+                        }
+                        count += 1;
+                    }
+                    count = 0;
+                }
+
+                if( player2.getServe2() ){
+                    while(count < 100) {
+                        ball.draw(player2);
+                        if (!player2.getServe2()) {
+                            player2.setServe2(false);
+                            break;
+                        }
+                        count += 1;
+                    }
+                    count = 0;
+                }
+
+
                 ball.move(deltaX, deltaY);
 
-                scoreboard.setScore();
+                scoreboard.setScore(ball, player, player2);
             }
+
         }.start();
+
     }
-
-
 
 
 }

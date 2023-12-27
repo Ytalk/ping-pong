@@ -3,6 +3,7 @@ package com.pong.pingpong;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+
 public class Wall{
 
     private int py;
