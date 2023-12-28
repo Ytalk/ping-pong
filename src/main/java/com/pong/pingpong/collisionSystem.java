@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
 
 public class CollisionSystem{
 
-    double deltaX = -1;  //start final
+    double deltaX = 1;  //start final
     double deltaY = 0.5;
 
     Wall lower_wall;
@@ -64,10 +64,12 @@ public class CollisionSystem{
 
                 //FUNÇÃO DE SAQUE (IN PROGRESS)
                 if( player.getServe() ){
-                    while(count < 100) {
+                    //System.out.println("p1 levou gol");
+                    while(count < 10000) {
                         ball.draw(player);
+
                         if (!player.getServe()) {
-                            player.setServe(false);
+                            deltaX = deltaX * -1;
                             break;
                         }
                         count += 1;
@@ -76,10 +78,12 @@ public class CollisionSystem{
                 }
 
                 if( player2.getServe2() ){
-                    while(count < 100) {
+                    //System.out.println("p2 levou gol");
+                    while(count < 10000) {
                         ball.draw(player2);
+
                         if (!player2.getServe2()) {
-                            player2.setServe2(false);
+                            deltaX = deltaX * -1;
                             break;
                         }
                         count += 1;

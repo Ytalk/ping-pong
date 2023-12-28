@@ -26,8 +26,8 @@ public class RacquetPlayer extends Racquet{
                 if(py < 405)
                     moveDown();
             }
-            if(serve) {
-                if (keysPressed.contains(KeyCode.A)) {
+            if(serve){
+                if(keysPressed.contains(KeyCode.A)){
                     ball.hurl();
                     setServe(false);
                 }
@@ -43,8 +43,8 @@ public class RacquetPlayer extends Racquet{
                 if(py < 405)
                     moveDown();
             }
-            if(serve2) {
-                if (keysPressed.contains(KeyCode.K)) {
+            if(serve2){
+                if(keysPressed.contains(KeyCode.K)){
                     ball.hurl();
                     setServe2(false);
                 }

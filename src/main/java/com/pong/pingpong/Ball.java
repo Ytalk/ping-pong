@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 
 public class Ball{
 
-    private boolean dx;
-    private boolean dy;
+    private double dx;
+    private double dy;
 
     private double px;
     private double py;
@@ -35,10 +35,10 @@ public class Ball{
 
 
     public void move(double dx, double dy){
-        dy = getSpeed() * dy;
-        dx = getSpeed() * dx;
-        ball.setCenterX(ball.getCenterX() + dx);
-        ball.setCenterY(ball.getCenterY() + dy);
+        this.dy = getSpeed() * dy;
+        this.dx = getSpeed() * dx;
+        ball.setCenterX(ball.getCenterX() + this.dx);
+        ball.setCenterY(ball.getCenterY() + this.dy);
     }
 
 
