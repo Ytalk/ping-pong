@@ -27,14 +27,13 @@ public class PongFX extends Application{
     @Override
     public void start(Stage primaryStage){
 
-        LocalPvPScene local_pvp = new LocalPvPScene();
-        ControlsScene controls = new ControlsScene();
-
-        Button play_button = new Button("Play PvP");
+        Button play_button = new Button("Play Local");
+        MatchInterfaceScene mi = new MatchInterfaceScene();
         play_button.setPrefSize(100, 30);
-        play_button.setOnAction( e -> local_pvp.localPvpScene(primaryStage, window_height, window_width) );
+        play_button.setOnAction( e -> mi.matchInterfaceScene(primaryStage, window_height, window_width) );
 
         Button controls_button = new Button("Controls");
+        ControlsScene controls = new ControlsScene();
         controls_button.setPrefSize(100, 30);
         controls_button.setOnAction( e -> controls.controlsScene(primaryStage, window_height, window_width) );
 
@@ -43,12 +42,14 @@ public class PongFX extends Application{
         exit_button.setOnAction( e -> primaryStage.close() );
 
 
+
         VBox menu_panel = new VBox(20);
         menu_panel.setAlignment(Pos.CENTER);
-        menu_panel.getChildren().addAll( play_button, controls_button, exit_button );
+        menu_panel.getChildren().addAll( play_button, controls_button, exit_button);
         menu_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
         Scene menu_scene = new Scene(menu_panel, window_width, window_height);
+
 
 
         primaryStage.setTitle("Pong FX");

@@ -101,4 +101,14 @@ public class Scoreboard{
     }
 
 
+    public int getScore1(){
+        return score1;
+    }
+
+
+    public int getScore2(){
+        return score2;
+    }
+
+
 }

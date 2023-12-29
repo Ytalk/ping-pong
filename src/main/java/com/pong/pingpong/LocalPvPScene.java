@@ -19,17 +19,18 @@ public class LocalPvPScene{
 
     //NO CONSTRUCTOR
 
-    public void localPvpScene(Stage primaryStage, int window_height, int window_width){
+
+    public void localPvpScene(Stage primaryStage, int window_height, int window_width, String name1, String name2, int goal){
 
         Pane play_panel = new Pane();
         play_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
 
-        RacquetPlayer player = new RacquetPlayer("Player 1", 10, true);
+        RacquetPlayer player = new RacquetPlayer(name1, 10, true);
         play_panel.getChildren().add( player.getRacquet() );
         player.setServe(true);//o controle1 tem o privilégio de começar sacando
 
-        RacquetPlayer player2 = new RacquetPlayer("Player 2", 834, false);
+        RacquetPlayer player2 = new RacquetPlayer(name2, 834, false);
         play_panel.getChildren().add( player2.getRacquet() );
 
         Wall upper_wall = new Wall(0, window_width);
@@ -66,12 +67,17 @@ public class LocalPvPScene{
 
 
         CollisionSystem collision = new CollisionSystem(lower_wall, upper_wall, player, player2);
-        collision.inertia(scoreboard, ball);//comportamento da bola, colisões, movimento e saques
+        collision.inertia(scoreboard, ball);//timer para comportamento da bola, colisões, movimento, saques e pontuações
+
+
+        Champion champ = new Champion(goal, name1, name2, scoreboard, collision, primaryStage);
+        champ.findChampion();//timer para analisar se atingiu o objetivo
 
 
         primaryStage.setScene(pong_scene);
         play_panel.requestFocus();//nó recebe eventos do teclado focado
 
     }
+
 
 }

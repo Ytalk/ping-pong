@@ -19,6 +19,7 @@ public class CollisionSystem{
     Racquet player2;
 
     int count = 0;
+    private AnimationTimer collision_animation;
 
 
     public CollisionSystem(Wall lower_wall, Wall upper_wall, Racquet player, Racquet player2){
@@ -48,7 +49,7 @@ public class CollisionSystem{
 
     public void inertia(Scoreboard scoreboard, Ball ball){
 
-        new AnimationTimer(){
+        collision_animation = new AnimationTimer(){
 
             @Override
             public void handle(long now){
@@ -97,8 +98,16 @@ public class CollisionSystem{
                 scoreboard.setScore(ball, player, player2);
             }
 
-        }.start();
+        };
+        collision_animation.start();
 
+    }
+
+
+    public void stopInertia(){
+        if(collision_animation != null) {
+            collision_animation.stop();
+        }
     }
 
 
