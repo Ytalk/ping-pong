@@ -40,17 +40,16 @@ public class LocalPvPScene{
         play_panel.getChildren().add( lower_wall.getWall() );
 
         Ball ball = new Ball(400, 200, 10);
-        play_panel.getChildren().add(ball.getBall());
+        play_panel.getChildren().add( ball.getBall() );
 
 
-        Scoreboard scoreboard = new Scoreboard( player.getName(), player2.getName() );
-
-        Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel) );//retirado o tamanho.
-
-        scoreboard.setSceneWidth(window_width);
+        Scoreboard scoreboard = new Scoreboard( player.getName(), player2.getName(), window_width );
 
 
-        //gerencia entrada de teclado
+        Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel) );
+
+
+        //gerencia entrada de teclado para jogadores
         Set<KeyCode> keysPressed = new HashSet<>();
 
         pong_scene.setOnKeyPressed(event -> {

@@ -15,6 +15,7 @@ public class Ball{
     private double speed;
     private Circle ball;
 
+
     public Ball(double centerX, double centerY, double radius){
         px = centerX;
         py = centerY;

@@ -31,13 +31,15 @@ public class ControlsScene{
         control1.setTextFill(Color.WHITE);
         control1.setStyle("-fx-border-color:black; -fx-background-color: blue; -fx-border-width: 2;");
 
-        Q = new Label("Q - up");
+        Q = new Label("Q   -   up");
         Q.setFont(new Font("Arial", 20));
         Q.setTextFill(Color.WHITE);
-        A = new Label("A - serve");
+
+        A = new Label("A   -   serve");
         A.setFont(new Font("Arial", 20));
         A.setTextFill(Color.WHITE);
-        Z = new Label("Z - down");
+
+        Z = new Label("Z   -   down");
         Z.setFont(new Font("Arial", 20));
         Z.setTextFill(Color.WHITE);
 
@@ -46,18 +48,21 @@ public class ControlsScene{
         control1_panel.getChildren().addAll(control1, Q, A, Z);
 
 
+
         control2 = new Label("CONTROL 2");
         control2.setFont(new Font("fantasy", 25));
         control2.setTextFill(Color.WHITE);
         control2.setStyle("-fx-border-color:black; -fx-background-color: blue; -fx-border-width: 2;");
 
-        O = new Label("O - up");
+        O = new Label("O   -   up");
         O.setFont(new Font("Arial", 20));
         O.setTextFill(Color.WHITE);
-        K = new Label("K - serve");
+
+        K = new Label("K   -   serve");
         K.setFont(new Font("Arial", 20));
         K.setTextFill(Color.WHITE);
-        M = new Label("M - down");
+
+        M = new Label("M   -   down");
         M.setFont(new Font("Arial", 20));
         M.setTextFill(Color.WHITE);
 
@@ -66,14 +71,18 @@ public class ControlsScene{
         control2_panel.getChildren().addAll(control2, O, K, M);
 
 
-        Button back_button = new Button("BACK");
-        back_button.setStyle("-fx-font-family: 'Arial'; -fx-font-size: 15;");
-        //back_button.setStyle("-fx-border-color: black; -fx-border-width: 4px; -fx-border-radius: 9px;");
-        back_button.setStyle("-fx-text-fill: black;");
 
-        CornerRadii cr = new CornerRadii(15);
-        back_button.setBackground(new Background(new BackgroundFill(Color.BLUE, cr, javafx.geometry.Insets.EMPTY)));
-        back_button.setPrefSize(100, 30);
+        Button back_button = new Button("BACK");
+
+        back_button.setStyle(
+            "-fx-background-radius: 0 0 10 0;" +
+            "-fx-padding: 5;" +
+            "-fx-font-family: 'Arial'; -fx-font-size: 12;" +
+            "-fx-text-fill: black;" +
+            "-fx-background-color: #0000FF;" +
+            "-fx-min-width: 100;" +
+            "-fx-min-height: 30;"
+        );
 
         back_button.setOnAction(e -> {
             PongFX return_main = new PongFX();
@@ -81,10 +90,11 @@ public class ControlsScene{
         });
 
 
+
         HBox controls_panel = new HBox(120);
-        //controls_panel.setAlignment(Pos.CENTER);
         controls_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
         controls_panel.getChildren().addAll(back_button, control1_panel, control2_panel);
+
 
 
         Scene controls_scene = new Scene( controls_panel, window_width, window_height );//retirado o tamanho.

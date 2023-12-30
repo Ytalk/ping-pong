@@ -11,6 +11,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.geometry.Insets;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 
 public class PongFX extends Application{
@@ -27,6 +29,10 @@ public class PongFX extends Application{
     @Override
     public void start(Stage primaryStage){
 
+        ImageView logo = new ImageView(  new Image( getClass().getResourceAsStream("/com/pong/pingpong/icons/bgpfxlogo.png") )  );
+        logo.setFitHeight(200);
+        logo.setFitWidth(200);
+
         Button play_button = new Button("Play Local");
         MatchInterfaceScene mi = new MatchInterfaceScene();
         play_button.setPrefSize(100, 30);
@@ -42,17 +48,15 @@ public class PongFX extends Application{
         exit_button.setOnAction( e -> primaryStage.close() );
 
 
-
         VBox menu_panel = new VBox(20);
         menu_panel.setAlignment(Pos.CENTER);
-        menu_panel.getChildren().addAll( play_button, controls_button, exit_button);
+        menu_panel.getChildren().addAll( logo, play_button, controls_button, exit_button);
         menu_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
+
         Scene menu_scene = new Scene(menu_panel, window_width, window_height);
-
-
-
         primaryStage.setTitle("Pong FX");
+        primaryStage.getIcons().add(  new Image( getClass().getResourceAsStream("/com/pong/pingpong/icons/bgpfxlogo.png") )  );
         primaryStage.setScene(menu_scene);
         primaryStage.show();
     }

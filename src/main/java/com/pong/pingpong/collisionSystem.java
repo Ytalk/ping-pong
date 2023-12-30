@@ -2,7 +2,6 @@ package com.pong.pingpong;
 
 import javafx.scene.Node;
 import javafx.animation.AnimationTimer;
-
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -10,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 
 public class CollisionSystem{
 
-    double deltaX = 1;  //start final
+    double deltaX = 1;  //start
     double deltaY = 0.5;
 
     Wall lower_wall;
@@ -30,15 +29,16 @@ public class CollisionSystem{
     }
 
 
-    public boolean areBoundsOverlapping(Bounds bounds1, Bounds bounds2) {
+    public boolean boundsOverlapping(Bounds bounds1, Bounds bounds2) {
         return bounds1.intersects(bounds2);
     }
 
-    public boolean areShapesOverlapping(Rectangle rectangle, Circle circle) {
+
+    public boolean shapesOverlapping(Rectangle rectangle, Circle circle) {
         Bounds rectangleBounds = rectangle.getBoundsInParent();
         Bounds circleBounds = circle.getBoundsInParent();
 
-        return areBoundsOverlapping(rectangleBounds, circleBounds);
+        return boundsOverlapping(rectangleBounds, circleBounds);
     }
 
 
@@ -65,7 +65,6 @@ public class CollisionSystem{
 
                 //FUNÇÃO DE SAQUE (IN PROGRESS)
                 if( player.getServe() ){
-                    //System.out.println("p1 levou gol");
                     while(count < 10000) {
                         ball.draw(player);
 
@@ -79,7 +78,6 @@ public class CollisionSystem{
                 }
 
                 if( player2.getServe2() ){
-                    //System.out.println("p2 levou gol");
                     while(count < 10000) {
                         ball.draw(player2);
 
@@ -109,6 +107,5 @@ public class CollisionSystem{
             collision_animation.stop();
         }
     }
-
 
 }

@@ -3,6 +3,7 @@ package com.pong.pingpong;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+
 public abstract class Racquet{
 
     private String name;
@@ -50,13 +51,11 @@ public abstract class Racquet{
     }
 
 
-
-
     public double ServeX(){
         if(px > 400)
-            return px - 30;
+            return px - 11;
         else
-            return (px + 30);
+            return (px + 21);
     }
 
 
@@ -69,6 +68,7 @@ public abstract class Racquet{
         serve = state;
     }
 
+
     public void setServe2(boolean state){
         serve2 = state;
     }
@@ -77,6 +77,7 @@ public abstract class Racquet{
     public boolean getServe(){
         return serve;
     }
+
 
     public boolean getServe2(){
         return serve2;

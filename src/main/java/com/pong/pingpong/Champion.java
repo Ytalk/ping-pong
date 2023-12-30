@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar;
 
+
 public class Champion{
 
     private AnimationTimer animationTimer;
@@ -29,9 +30,11 @@ public class Champion{
         this.primaryStage = primaryStage;
     }
 
+
     public void findChampion(){
         startTimer();
     }
+
 
     private void startTimer(){
         animationTimer = new AnimationTimer(){
@@ -65,11 +68,9 @@ public class Champion{
             alert.setHeaderText(null);
             alert.setContentText(winner + " wins!");
 
-            // Adiciona um botão "OK" com um evento
             ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
             alert.getButtonTypes().setAll(okButton);
 
-            // Obtém o botão "OK" e adiciona um evento ao clique
             Button okBtn = (Button) alert.getDialogPane().lookupButton(okButton);
             okBtn.setOnAction(event -> {
                 PongFX return_main = new PongFX();
@@ -77,10 +78,8 @@ public class Champion{
                 alert.close();
             });
 
-            // Exibe o diálogo e espera até que o botão "OK" seja clicado
             alert.showAndWait();
         });
     }
-
 
 }
