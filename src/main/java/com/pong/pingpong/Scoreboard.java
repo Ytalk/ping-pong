@@ -10,10 +10,11 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.geometry.Insets;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
-
+/**
+ * The Scoreboard class represents a scoreboard for a game. It displays the names of two players, their scores, and a separator.
+ * The class also keeps track of the width of the game scene and updates the scores based on the position of a ball and the racquets.
+ */
 public class Scoreboard{
 
     private HBox scoreboard_panel;
@@ -23,7 +24,12 @@ public class Scoreboard{
     private boolean pointScored = false;
     private double scene_width;
 
-
+    /**
+     * Constructor that initializes the scoreboard with the names of the players and the width of the game scene.
+     * @param name1 The name of player 1.
+     * @param name2 The name of player 2.
+     * @param s_width The width of the game scene.
+     */
     public Scoreboard(String name1, String name2, double s_width){
 
         this.scene_width = s_width;
@@ -58,19 +64,28 @@ public class Scoreboard{
     }
 
 
-    public void setScore(Ball ball, Racquet control1, Racquet control2){
+    /**
+     * Updates the scores based on the position of the ball and the racquets.
+     * If the ball goes out of bounds on the left side, the score of player 2 is incremented and player 1 gets the serve.
+     * If the ball goes out of bounds on the right side, the score of player 1 is incremented and player 2 gets the serve.
+     * If the ball is within the bounds, no score is incremented.
+     * @param ball The ball object.
+     * @param player1 The racquet used to enable the serve function for player 1.
+     * @param player2 The racquet used to enable the serve function for player 2.
+     */
+    public void setScore(Ball ball, Racquet player1, Racquet player2){
         double ballMinX = ball.getBall().getBoundsInParent().getMinX();
         double ballMaxX = ball.getBall().getBoundsInParent().getMaxX();
 
         if( (ballMinX < 0) && (!pointScored) ){
             score2_field.setText( String.valueOf(++score2) );
-            control1.setServe(true);
+            player1.setServe(true);
             pointScored = true;
         }
 
         else if( (ballMaxX > scene_width) && (!pointScored) ){
             score1_field.setText( String.valueOf(++score1) );
-            control2.setServe2(true);
+            player2.setServe2(true);
             pointScored = true;
         }
 
@@ -81,16 +96,28 @@ public class Scoreboard{
     }
 
 
+    /**
+     * Returns the scoreboard panel as an HBox.
+     * @return The scoreboard panel.
+     */
     public HBox getScoreboard(){
         return scoreboard_panel;
     }
 
 
+    /**
+     * Returns the score of player 1.
+     * @return The score of player 1.
+     */
     public int getScore1(){
         return score1;
     }
 
 
+    /**
+     * Returns the score of player 2.
+     * @return The score of player 2.
+     */
     public int getScore2(){
         return score2;
     }

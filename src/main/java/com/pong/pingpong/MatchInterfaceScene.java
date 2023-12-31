@@ -2,10 +2,9 @@ package com.pong.pingpong;
 
 import javafx.scene.control.Label;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import  javafx.scene.text.Font;
+import javafx.scene.text.Font;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -18,11 +17,32 @@ import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 
-
+/**
+ * The `MatchInterfaceScene` class is responsible for creating a scene where the user can enter player names, select a game mode, and set the goal score.
+ * It also handles error checking and confirmation of the selected options.
+ *
+ * Example Usage:
+ * MatchInterfaceScene mi = new MatchInterfaceScene();
+ * mi.matchInterfaceScene(primaryStage, window_height, window_width);
+ *
+ * Code Analysis:
+ * Main functionalities:
+ * - Display a scene with input fields for player names, a choice box for game mode, and a text field for the goal score.
+ * - Show or hide the second player name input field based on the selected game mode.
+ * - Handle the confirmation button click event and perform error checking on the input fields.
+ * - Create a new instance of the `LocalPvPScene` class and pass the selected options to start the game.
+ *
+ * Methods:
+ * - `matchInterfaceScene(Stage primaryStage, int window_height, int window_width)`: Creates and displays the match interface scene with input fields for player names, a choice box for game mode, and a text field for the goal score.
+ * Handles the confirmation button click event and performs error checking on the input fields.
+ * Creates a new instance of the `LocalPvPScene` class and passes the selected options to start the game.
+ *
+ * Fields:
+ * - None.
+ */
 public class MatchInterfaceScene{
 
     //NO CONSTRUCTOR
-
 
     public void matchInterfaceScene(Stage primaryStage, int window_height, int window_width){
 

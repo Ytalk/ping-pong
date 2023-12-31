@@ -14,9 +14,15 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-
+/**
+ * The PongFX class is the main class of the PongFX application. It extends the Application class and is responsible for starting the application, creating the main menu scene, and handling button actions.
+ */
 public class PongFX extends Application{
 
+    /**
+     * The entry point of the application. It calls the launch method to start the JavaFX application.
+     * @param args The command line arguments
+     */
     public static void main(String[] args){
         launch(args);
     }
@@ -26,6 +32,10 @@ public class PongFX extends Application{
     int window_height = 480;
     int window_width = 854;
 
+    /**
+     * Overrides the start method of the Application class. It creates the main menu scene and sets it as the primary stage's scene.
+     * @param primaryStage The primary stage of the application
+     */
     @Override
     public void start(Stage primaryStage){
 
@@ -34,14 +44,18 @@ public class PongFX extends Application{
         logo.setFitWidth(200);
 
         Button play_button = new Button("Play Local");
-        MatchInterfaceScene mi = new MatchInterfaceScene();
         play_button.setPrefSize(100, 30);
-        play_button.setOnAction( e -> mi.matchInterfaceScene(primaryStage, window_height, window_width) );
+        play_button.setOnAction(e -> {
+            MatchInterfaceScene mi = new MatchInterfaceScene();
+            mi.matchInterfaceScene(primaryStage, window_height, window_width);
+        });
 
         Button controls_button = new Button("Controls");
-        ControlsScene controls = new ControlsScene();
         controls_button.setPrefSize(100, 30);
-        controls_button.setOnAction( e -> controls.controlsScene(primaryStage, window_height, window_width) );
+        controls_button.setOnAction(e -> {
+            ControlsScene controls = new ControlsScene();
+            controls.controlsScene(primaryStage, window_height, window_width);
+        });
 
         Button exit_button = new Button("Exit");
         exit_button.setPrefSize(100, 30);
@@ -60,6 +74,5 @@ public class PongFX extends Application{
         primaryStage.setScene(menu_scene);
         primaryStage.show();
     }
-
 
 }

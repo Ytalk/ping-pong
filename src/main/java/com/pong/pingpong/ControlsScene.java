@@ -2,7 +2,6 @@ package com.pong.pingpong;
 
 import javafx.scene.control.Label;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import  javafx.scene.text.Font;
@@ -16,14 +15,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 
 
+/**
+ * The ControlsScene class is responsible for creating a scene that displays the controls for the game.
+ * It includes a back button to return to the main menu and two sets of controls, each with labels for the keys.
+ */
 public class ControlsScene{
-
-    //NO CONSTRUCTOR
 
     private Label control1, control2;
     private Label Q, A, Z;
     private Label O, K, M;
 
+    /**
+     * This method creates the controls scene by setting up the labels for the keys with their corresponding actions,
+     * as well as the back button. It also sets the background color and size of the scene.
+     * 
+     * @param primaryStage the primary stage of the JavaFX application
+     * @param window_height the height of the window
+     * @param window_width the width of the window
+     */
     public void controlsScene(Stage primaryStage, int window_height, int window_width){
 
         control1 = new Label("CONTROL 1");

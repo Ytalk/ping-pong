@@ -7,6 +7,47 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 
+/**
+ * The `CollisionSystem` class is responsible for handling collisions between different objects in a game.
+ * It calculates the movement of a ball and checks for collisions with walls and racquets.
+ * It also handles the animation of the collision and updates the game scoreboard.
+ *
+ * Example Usage:
+ * 
+ * // Create instances of walls, racquets, scoreboard, and ball
+ * Wall lowerWall = new Wall();
+ * Wall upperWall = new Wall();
+ * Racquet player1 = new Racquet();
+ * Racquet player2 = new Racquet();
+ * Scoreboard scoreboard = new Scoreboard();
+ * Ball ball = new Ball();
+ * 
+ * // Create an instance of CollisionSystem
+ * CollisionSystem collisionSystem = new CollisionSystem(lowerWall, upperWall, player1, player2);
+ * 
+ * // Start the collision animation and update the scoreboard
+ * collisionSystem.inertia(scoreboard, ball);
+ * 
+ * // Stop the collision animation
+ * collisionSystem.stopInertia();
+ *
+ * Methods:
+ * - boundsOverlapping(Bounds bounds1, Bounds bounds2): Checks if two bounding boxes are overlapping
+ * - shapesOverlapping(Rectangle rectangle, Circle circle): Checks if a rectangle and a circle are overlapping
+ * - checkCollision(Node nodeA, Node nodeB): Checks if two nodes are colliding
+ * - inertia(Scoreboard scoreboard, Ball ball): Starts the collision animation and updates the scoreboard
+ * - stopInertia(): Stops the collision animation
+ *
+ * Fields:
+ * - deltaX: The horizontal movement of the ball
+ * - deltaY: The vertical movement of the ball
+ * - lower_wall: The lower wall object
+ * - upper_wall: The upper wall object
+ * - player: The first player's racquet object
+ * - player2: The second player's racquet object
+ * - count: A counter variable used in the serve function
+ * - collision_animation: The animation timer for the collision animation
+ */
 public class CollisionSystem{
 
     double deltaX = 1;  //start

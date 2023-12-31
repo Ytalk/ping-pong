@@ -8,7 +8,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ButtonBar;
 
-
+/**
+ * The Champion class is responsible for determining the winner of a game and displaying a popup message with the winner's name.
+ * It uses an AnimationTimer to continuously check the scores and stop the game when a player reaches the goal score.
+ * The Champion class also handles the logic for restarting the game after the popup is closed.
+ */
 public class Champion{
 
     private AnimationTimer animationTimer;
@@ -21,6 +25,15 @@ public class Champion{
     private CollisionSystem cystem;
     private Stage primaryStage;
 
+    /**
+     * Constructs a Champion object with the specified goal score, player names, scoreboard, collision system, and primary stage.
+     * @param goal The score that a player needs to reach in order to win the game.
+     * @param name1 The name of player 1.
+     * @param name2 The name of player 2.
+     * @param scoreboard The scoreboard object that keeps track of the scores.
+     * @param cystem The collision system object that handles the game physics.
+     * @param primaryStage The primary stage of the JavaFX application.
+     */
     public Champion(int goal, String name1, String name2, Scoreboard scoreboard, CollisionSystem cystem, Stage primaryStage) {
         this.goal = goal;
         this.name1 = name1;
@@ -31,6 +44,9 @@ public class Champion{
     }
 
 
+    /**
+     * Starts the AnimationTimer to determine the winner of the game.
+     */
     public void findChampion(){
         startTimer();
     }
@@ -61,7 +77,7 @@ public class Champion{
     }
 
 
-    private void showWinnerPopup(String winner) {
+    private void showWinnerPopup(String winner){
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Game-Over");

@@ -4,7 +4,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
-import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -14,12 +13,29 @@ import java.util.Set;
 import javafx.scene.input.KeyCode;
 import java.util.HashSet;
 
-
+/**
+ * The LocalPvPScene class represents a scene for a local player versus player (PvP) game.
+ * It sets up the game environment, including the players, walls, ball, and scoreboard.
+ * It also handles keyboard input for the players and manages the collision system and scoring.
+ */
 public class LocalPvPScene{
 
     //NO CONSTRUCTOR
 
-
+    /**
+     * Sets up the game environment for a local PvP game.
+     * Creates the players, walls, ball, and scoreboard.
+     * Handles keyboard input for the players.
+     * Manages the collision system and scoring.
+     * Binds the scene to the primaryStage.
+     * 
+     * @param primaryStage the primary stage of the JavaFX application
+     * @param window_height the height of the game window
+     * @param window_width the width of the game window
+     * @param name1 the name of player 1
+     * @param name2 the name of player 2
+     * @param goal the score needed to win the match
+     */
     public void localPvpScene(Stage primaryStage, int window_height, int window_width, String name1, String name2, int goal){
 
         Pane play_panel = new Pane();
@@ -36,7 +52,7 @@ public class LocalPvPScene{
         Wall upper_wall = new Wall(0, window_width);
         play_panel.getChildren().add( upper_wall.getWall() );
 
-        Wall lower_wall = new Wall(470, window_width);
+        Wall lower_wall = new Wall(440, window_width);
         play_panel.getChildren().add( lower_wall.getWall() );
 
         Ball ball = new Ball(400, 200, 10);
@@ -46,7 +62,7 @@ public class LocalPvPScene{
         Scoreboard scoreboard = new Scoreboard( player.getName(), player2.getName(), window_width );
 
 
-        Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel) );
+        Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel), window_width, window_height );
 
 
         //gerencia entrada de teclado para jogadores
