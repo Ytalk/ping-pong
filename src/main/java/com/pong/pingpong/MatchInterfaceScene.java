@@ -48,16 +48,7 @@ public class MatchInterfaceScene{
 
 
         Button back_button = new Button("BACK");
-
-        back_button.setStyle(
-                "-fx-background-radius: 0 0 10 0;" +
-                "-fx-padding: 5;" +
-                "-fx-font-family: 'Arial'; -fx-font-size: 12;" +
-                "-fx-text-fill: black;" +
-                "-fx-background-color: #0000FF;" +
-                "-fx-min-width: 100;" +
-                "-fx-min-height: 30;"
-        );
+        back_button.getStyleClass().add("back-button");
 
         back_button.setOnAction(e -> {
             PongFX return_main = new PongFX();
@@ -139,15 +130,7 @@ public class MatchInterfaceScene{
 
         //CONFIRM OR HANDLE ERRORS
         Button confirm_button = new Button("CONFIRM");
-        confirm_button.setStyle(
-            "-fx-background-radius: 10 0 0 0;" +
-            "-fx-padding: 5;" +
-            "-fx-font-family: 'Arial'; -fx-font-size: 12;" +
-            "-fx-text-fill: black;" +
-            "-fx-background-color: #0000FF;" +
-            "-fx-min-width: 100;" +
-            "-fx-min-height: 30;"
-        );
+        confirm_button.getStyleClass().add("confirm-button");
 
         confirm_button.setOnAction(e -> {
             try{
@@ -185,6 +168,7 @@ public class MatchInterfaceScene{
         mi_panel.getChildren().addAll(back_button, names_panel, pointsmode_panel, confirm_panel);
 
         Scene mi_scene = new Scene( mi_panel, window_width, window_height );
+        mi_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/half-leaf-button.css").toExternalForm());
         primaryStage.setScene(mi_scene);
     }
 }

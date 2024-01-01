@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import com.jfoenix.controls.JFXButton;
 
 /**
  * The PongFX class is the main class of the PongFX application. It extends the Application class and is responsible for starting the application, creating the main menu scene, and handling button actions.
@@ -28,7 +29,6 @@ public class PongFX extends Application{
     }
 
 
-    //GLOBAL VARIABLES
     int window_height = 480;
     int window_width = 854;
 
@@ -43,32 +43,36 @@ public class PongFX extends Application{
         logo.setFitHeight(200);
         logo.setFitWidth(200);
 
+
         Button play_button = new Button("Play Local");
-        play_button.setPrefSize(100, 30);
+        play_button.getStyleClass().add("menu-jfx-button");
         play_button.setOnAction(e -> {
             MatchInterfaceScene mi = new MatchInterfaceScene();
             mi.matchInterfaceScene(primaryStage, window_height, window_width);
         });
 
+
         Button controls_button = new Button("Controls");
-        controls_button.setPrefSize(100, 30);
+        controls_button.getStyleClass().add("menu-jfx-button");
         controls_button.setOnAction(e -> {
             ControlsScene controls = new ControlsScene();
             controls.controlsScene(primaryStage, window_height, window_width);
         });
 
+
         Button exit_button = new Button("Exit");
-        exit_button.setPrefSize(100, 30);
+        exit_button.getStyleClass().add("menu-jfx-button");
         exit_button.setOnAction( e -> primaryStage.close() );
 
 
         VBox menu_panel = new VBox(20);
         menu_panel.setAlignment(Pos.CENTER);
-        menu_panel.getChildren().addAll( logo, play_button, controls_button, exit_button);
+        menu_panel.getChildren().addAll( logo, play_button, controls_button, exit_button );
         menu_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
 
         Scene menu_scene = new Scene(menu_panel, window_width, window_height);
+        menu_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/oval-button.css").toExternalForm());
         primaryStage.setTitle("Pong FX");
         primaryStage.getIcons().add(  new Image( getClass().getResourceAsStream("/com/pong/pingpong/icons/bgpfxlogo.png") )  );
         primaryStage.setScene(menu_scene);

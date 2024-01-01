@@ -82,16 +82,7 @@ public class ControlsScene{
 
 
         Button back_button = new Button("BACK");
-
-        back_button.setStyle(
-            "-fx-background-radius: 0 0 10 0;" +
-            "-fx-padding: 5;" +
-            "-fx-font-family: 'Arial'; -fx-font-size: 12;" +
-            "-fx-text-fill: black;" +
-            "-fx-background-color: #0000FF;" +
-            "-fx-min-width: 100;" +
-            "-fx-min-height: 30;"
-        );
+        back_button.getStyleClass().add("back-button");
 
         back_button.setOnAction(e -> {
             PongFX return_main = new PongFX();
@@ -107,6 +98,7 @@ public class ControlsScene{
 
 
         Scene controls_scene = new Scene( controls_panel, window_width, window_height );//retirado o tamanho.
+        controls_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/half-leaf-button.css").toExternalForm());
         primaryStage.setScene(controls_scene);
     }
 

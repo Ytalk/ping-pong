@@ -35,5 +35,13 @@ $ git clone https://github.com/Ytalk/ping-pong.git
 ```
 
 ```bash
-...
+#Run
+$ mvn javafx:run
+```
+
+<p align = "center">or</p>
+
+```bash
+#Run with makefile
+$ make
 ```
