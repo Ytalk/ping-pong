@@ -13,41 +13,23 @@ import java.util.Set;
 import javafx.scene.input.KeyCode;
 import java.util.HashSet;
 
-/**
- * The LocalPvPScene class represents a scene for a local player versus player (PvP) game.
- * It sets up the game environment, including the players, walls, ball, and scoreboard.
- * It also handles keyboard input for the players and manages the collision system and scoring.
- */
-public class LocalPvPScene{
+
+public class LocalPvBScene{
 
     //NO CONSTRUCTOR
 
-    /**
-     * Sets up the game environment for a local PvP game.
-     * Creates the players, walls, ball, and scoreboard.
-     * Handles keyboard input for the players.
-     * Manages the collision system and scoring.
-     * Binds the scene to the primaryStage.
-     * 
-     * @param primaryStage the primary stage of the JavaFX application
-     * @param window_height the height of the game window
-     * @param window_width the width of the game window
-     * @param name1 the name of player 1
-     * @param name2 the name of player 2
-     * @param goal the score needed to win the match
-     */
-    public void localPvpScene(Stage primaryStage, int window_height, int window_width, String name1, String name2, int goal){
+    public void localPvbScene(Stage primaryStage, int window_height, int window_width, String name, int goal){
 
         Pane play_panel = new Pane();
         play_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
 
-        RacquetPlayer player = new RacquetPlayer(name1, 10, true);
+        RacquetPlayer player = new RacquetPlayer(name, 10, true);
         play_panel.getChildren().add( player.getRacquet() );
         player.setServe(true);//o controle1 tem o privilégio de começar sacando
 
-        RacquetPlayer player2 = new RacquetPlayer(name2, 834, false);
-        play_panel.getChildren().add( player2.getRacquet() );
+        RacquetBot bot = new RacquetBot("Pingus Tremory", 834);
+        play_panel.getChildren().add( bot.getRacquet() );
 
         Wall upper_wall = new Wall(0, window_width);
         play_panel.getChildren().add( upper_wall.getWall() );
@@ -59,7 +41,7 @@ public class LocalPvPScene{
         play_panel.getChildren().add( ball.getBall() );
 
 
-        Scoreboard scoreboard = new Scoreboard( player.getName(), player2.getName(), window_width );
+        Scoreboard scoreboard = new Scoreboard( player.getName(), bot.getName(), window_width );
 
 
         Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel), window_width, window_height );
@@ -71,21 +53,22 @@ public class LocalPvPScene{
         pong_scene.setOnKeyPressed(event -> {
             keysPressed.add(event.getCode());
             player.handleKeyPressed(keysPressed, ball);
-            player2.handleKeyPressed(keysPressed, ball);
         });
 
         pong_scene.setOnKeyReleased(event -> {
             keysPressed.remove(event.getCode());
             player.handleKeyReleased(keysPressed, event);
-            player2.handleKeyReleased(keysPressed, event);
         });
 
 
-        ColllisionSystem collision = new ColllisionSystem(lower_wall, upper_wall, player, player2);
+        bot.Move(ball);
+
+
+        ColllisionSystem collision = new ColllisionSystem(lower_wall, upper_wall, player, bot);
         collision.inertia(scoreboard, ball);//timer para comportamento da bola, colisões, movimento, saques e pontuações
 
 
-        Champion champ = new Champion(goal, player.getName(), player2.getName(), scoreboard, collision, null, primaryStage);
+        Champion champ = new Champion(goal, player.getName(), bot.getName(), scoreboard, collision, bot, primaryStage);
         champ.findChampion();//timer para analisar se atingiu o objetivo
 
 

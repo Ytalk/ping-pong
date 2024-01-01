@@ -144,12 +144,22 @@ public class MatchInterfaceScene{
                     throw new NumberFormatException("objective score cannot be below 1!");
                 }
 
-                else{
+                else {
                     int goal = Integer.parseInt(points_field.getText());
 
-                    LocalPvPScene local_pvp = new LocalPvPScene();
-                    local_pvp.localPvpScene(primaryStage, window_height, window_width, name1_field.getText(), name2_field.getText(), goal);
+                    if( "PvP".equals(mode_chbox.getValue()) ){
+                        LocalPvPScene local_pvp = new LocalPvPScene();
+                        local_pvp.localPvpScene(primaryStage, window_height, window_width, name1_field.getText(), name2_field.getText(), goal);
+                    }
+                    else if( "bot".equals(mode_chbox.getValue()) ){
+                        LocalPvBScene local_pvb = new LocalPvBScene();
+                        local_pvb.localPvbScene(primaryStage, window_height, window_width, name1_field.getText(), goal);
+                    }
+                    else{
+                        throw new NumberFormatException("TEST");
+                    }
                 }
+
             }
             catch(NumberFormatException ex){
                 ex.showMessage();

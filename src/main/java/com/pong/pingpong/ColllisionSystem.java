@@ -48,7 +48,7 @@ import javafx.scene.shape.Rectangle;
  * - count: A counter variable used in the serve function
  * - collision_animation: The animation timer for the collision animation
  */
-public class CollisionSystem{
+public class ColllisionSystem{
 
     double deltaX = 1;  //start
     double deltaY = 0.5;
@@ -62,7 +62,7 @@ public class CollisionSystem{
     private AnimationTimer collision_animation;
 
 
-    public CollisionSystem(Wall lower_wall, Wall upper_wall, Racquet player, Racquet player2){
+    public ColllisionSystem(Wall lower_wall, Wall upper_wall, Racquet player, Racquet player2){
         this.lower_wall = lower_wall;
         this.upper_wall = upper_wall;
         this.player = player;
@@ -107,6 +107,7 @@ public class CollisionSystem{
                 //FUNÇÃO DE SAQUE (IN PROGRESS)
                 if( player.getServe() ){
                     while(count < 10000) {
+                        //System.out.println("p1");
                         ball.draw(player);
 
                         if (!player.getServe()) {
@@ -120,6 +121,7 @@ public class CollisionSystem{
 
                 if( player2.getServe2() ){
                     while(count < 10000) {
+                        //System.out.println("p2");
                         ball.draw(player2);
 
                         if (!player2.getServe2()) {
