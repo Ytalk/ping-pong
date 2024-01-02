@@ -14,7 +14,7 @@ public class RacquetBot extends Racquet{
     }
 
 
-    public void Move(Ball ball){
+    public void Move(Ball ball, RacquetBot bot){
 
         bot_animation = new AnimationTimer(){
 
@@ -22,26 +22,25 @@ public class RacquetBot extends Racquet{
             public void handle(long now){
 
                 if(py > ball.getBall().getCenterY()){
-                    if(py > 10)
+                    if(py > 10) {
                         moveUp();
-                    //System.out.println("suba");
+                    }
                 }
                 else if(py < ball.getBall().getCenterY()){
-                    if(py < 380)
+                    if(py < 380) {
                         moveDown();
-                    //System.out.println("desça");
+                    }
                 }
                 else{
                     py = py;
-                    //System.out.println("nada");
                 }
 
                 if(getServe2()){
-                    //System.out.println("sacar");
-                    //ball.draw();
+                    ball.draw(bot);
                     ball.hurl();
                     setServe2(false);
                 }
+
             }
 
         };

@@ -22,7 +22,7 @@ public class Champion{
     private int score1 = 0;
     private int score2 = 0;
     private Scoreboard scoreboard;
-    private ColllisionSystem cystem;
+    private CollisionSystem cystem;
     private Stage primaryStage;
     private RacquetBot bot;
 
@@ -35,7 +35,7 @@ public class Champion{
      * @param cystem The collision system object that handles the game physics.
      * @param primaryStage The primary stage of the JavaFX application.
      */
-    public Champion(int goal, String name1, String name2, Scoreboard scoreboard, ColllisionSystem cystem, RacquetBot bot, Stage primaryStage) {
+    public Champion(int goal, String name1, String name2, Scoreboard scoreboard, CollisionSystem cystem, RacquetBot bot, Stage primaryStage) {
         this.goal = goal;
         this.name1 = name1;
         this.name2 = name2;

@@ -61,11 +61,11 @@ public class LocalPvBScene{
         });
 
 
-        bot.Move(ball);
-
-
-        ColllisionSystem collision = new ColllisionSystem(lower_wall, upper_wall, player, bot);
+        CollisionSystem collision = new CollisionSystem(lower_wall, upper_wall, player, bot);
         collision.inertia(scoreboard, ball);//timer para comportamento da bola, colisões, movimento, saques e pontuações
+
+
+        bot.Move(ball, bot);
 
 
         Champion champ = new Champion(goal, player.getName(), bot.getName(), scoreboard, collision, bot, primaryStage);

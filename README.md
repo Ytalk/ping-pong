@@ -26,6 +26,10 @@
 - [Spring Boot](https://spring.io/projects/spring-boot/)
 - [JFoenix](https://github.com/sshahine/JFoenix)
 
+## 📄 Dependencies
+
+- [`Java JDK 9+`](https://www.oracle.com/java/technologies/downloads/) (mandatory)
+- [`Make`](https://gnuwin32.sourceforge.net/packages/make.htm) (optional)
 
 ## 💿 How Contribute
 
@@ -35,13 +39,28 @@ $ git clone https://github.com/Ytalk/ping-pong.git
 ```
 
 ```bash
-#Run
-$ mvn javafx:run
+#Enter directory
+$  cd ping-pong
+```
+
+```bash
+#Run with makefile
+
+#Linux:
+$ make lrun
+
+#Windows:
+$ make wrun
 ```
 
 <p align = "center">or</p>
 
 ```bash
-#Run with makefile
-$ make
+#Run without makefile
+
+#Linux:
+$ ./mvnw javafx:run
+
+#Windows:
+$ mvnw.cmd javafx:run
 ```

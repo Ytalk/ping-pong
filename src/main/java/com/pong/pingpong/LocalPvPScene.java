@@ -81,7 +81,7 @@ public class LocalPvPScene{
         });
 
 
-        ColllisionSystem collision = new ColllisionSystem(lower_wall, upper_wall, player, player2);
+        CollisionSystem collision = new CollisionSystem(lower_wall, upper_wall, player, player2);
         collision.inertia(scoreboard, ball);//timer para comportamento da bola, colisões, movimento, saques e pontuações
 
 
