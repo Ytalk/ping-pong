@@ -14,8 +14,8 @@ public abstract class Racquet{
     private int height;
     private int width;
     private Rectangle racquet;
-    boolean serve = false;
-    boolean serve2 = false;
+    protected boolean serve = false;
+    protected boolean serve2 = false;
 
     /**
      * Initializes the racquet with a name and initial X position (defines the racquet's side).

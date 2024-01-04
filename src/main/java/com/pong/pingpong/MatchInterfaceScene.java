@@ -135,19 +135,26 @@ public class MatchInterfaceScene{
         confirm_button.setOnAction(e -> {
             try{
                 if(points_field.getText().isEmpty()){
-                    throw new NumberFormatException("objective score not reported!");
+                    throw new MatchInterfaceException("objective score not reported!", "OBJECTIVE SCORE ERROR");
                 }
                 else if(!points_field.getText().matches("-?\\d+")){
-                    throw new NumberFormatException("objective score cannot contain letters!");
+                    throw new MatchInterfaceException("objective score cannot contain letters!", "OBJECTIVE SCORE ERROR");
                 }
-                else if (Integer.parseInt(points_field.getText()) <= 0){
-                    throw new NumberFormatException("objective score cannot be below 1!");
+                else if(Integer.parseInt(points_field.getText()) <= 0){
+                    throw new MatchInterfaceException("objective score cannot be below 1!", "OBJECTIVE SCORE ERROR");
+                }
+                else if(  (name1_field.getText().isEmpty())  ||  ( name1_field.getText().length() >= 15 )  ){
+                    throw new MatchInterfaceException("the name must contain between 1 and 15 characters!", "NAME ERROR");
                 }
 
                 else {
                     int goal = Integer.parseInt(points_field.getText());
 
                     if( "PvP".equals(mode_chbox.getValue()) ){
+                        if(  (name2_field.getText().isEmpty())  ||  ( name2_field.getText().length() >= 15 )  ){
+                            throw new MatchInterfaceException("the name must contain between 1 and 15 characters!", "NAME ERROR");
+                        }
+
                         LocalPvPScene local_pvp = new LocalPvPScene();
                         local_pvp.localPvpScene(primaryStage, window_height, window_width, name1_field.getText(), name2_field.getText(), goal);
                     }
@@ -156,12 +163,12 @@ public class MatchInterfaceScene{
                         local_pvb.localPvbScene(primaryStage, window_height, window_width, name1_field.getText(), goal);
                     }
                     else{
-                        throw new NumberFormatException("TEST");
+                        throw new MatchInterfaceException("no mode has been selected!", "MODE ERROR");
                     }
                 }
 
             }
-            catch(NumberFormatException ex){
+            catch(MatchInterfaceException ex){
                 ex.showMessage();
             }
         });

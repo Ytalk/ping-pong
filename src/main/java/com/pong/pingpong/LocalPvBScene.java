@@ -28,7 +28,7 @@ public class LocalPvBScene{
         play_panel.getChildren().add( player.getRacquet() );
         player.setServe(true);//o controle1 tem o privilégio de começar sacando
 
-        RacquetBot bot = new RacquetBot("Pingus Tremory", 834);
+        RacquetBot bot = new RacquetBot("Pingus T.", 834);
         play_panel.getChildren().add( bot.getRacquet() );
 
         Wall upper_wall = new Wall(0, window_width);

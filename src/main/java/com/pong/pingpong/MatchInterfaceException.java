@@ -6,17 +6,18 @@ import javafx.scene.control.Alert;
  * Represents a custom exception class for handling number format errors.
  * Extends the RuntimeException class.
  */
-public class NumberFormatException extends RuntimeException {
+public class MatchInterfaceException extends RuntimeException {
 
     String message;
-    String error_name = "OBJECTIVE SCORE ERROR";
+    String title;
 
     /**
-     * Constructor that initializes the message field with the provided message.
+     * Constructor that initializes the message and title field with the given parameters.
      *
      * @param message the error message
      */
-    public NumberFormatException(String message) {
+    public MatchInterfaceException(String message, String title) {
+        this.title = title;
         this.message = message;
     }
 
@@ -25,7 +26,7 @@ public class NumberFormatException extends RuntimeException {
      */
     public void showMessage() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(error_name);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

@@ -40,13 +40,14 @@ $ git clone https://github.com/Ytalk/ping-pong.git
 
 ```bash
 #Enter directory
-$  cd ping-pong
+$ cd ping-pong
 ```
 
 ```bash
 #Run with makefile
 
 #Linux:
+$ make lpermission
 $ make lrun
 
 #Windows:
@@ -59,6 +60,7 @@ $ make wrun
 #Run without makefile
 
 #Linux:
+$ chmod +x mvnw
 $ ./mvnw javafx:run
 
 #Windows:

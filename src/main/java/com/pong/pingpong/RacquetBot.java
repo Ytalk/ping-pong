@@ -8,6 +8,7 @@ import javafx.animation.AnimationTimer;
 public class RacquetBot extends Racquet{
 
     private AnimationTimer bot_animation;
+    private double errorMargin = 6.0;
 
     public RacquetBot(String name, int positionX){
         super(name, positionX);
@@ -21,19 +22,15 @@ public class RacquetBot extends Racquet{
             @Override
             public void handle(long now){
 
-                if(py > ball.getBall().getCenterY()){
-                    if(py > 10) {
+                if(  Math.abs( ServeY() - ball.getBall().getCenterY() ) > errorMargin  ){
+                    if( ServeY() > ball.getBall().getCenterY() && py > 10 ){
                         moveUp();
                     }
-                }
-                else if(py < ball.getBall().getCenterY()){
-                    if(py < 380) {
+                    else if( ServeY() < ball.getBall().getCenterY() && py < 380 ){
                         moveDown();
                     }
                 }
-                else{
-                    py = py;
-                }
+
 
                 if(getServe2()){
                     ball.draw(bot);
