@@ -36,7 +36,7 @@ public class ControlsScene{
     public void controlsScene(Stage primaryStage, int window_height, int window_width){
 
         control1 = new Label("CONTROL 1");
-        control1.setFont(new Font("fantasy", 25));
+        control1.setFont(new Font("fantasy", 23));
         control1.setTextFill(Color.WHITE);
         control1.setStyle("-fx-border-color:black; -fx-background-color: blue; -fx-border-width: 2;");
 
@@ -59,7 +59,7 @@ public class ControlsScene{
 
 
         control2 = new Label("CONTROL 2");
-        control2.setFont(new Font("fantasy", 25));
+        control2.setFont(new Font("fantasy", 23));
         control2.setTextFill(Color.WHITE);
         control2.setStyle("-fx-border-color:black; -fx-background-color: blue; -fx-border-width: 2;");
 
@@ -91,9 +91,19 @@ public class ControlsScene{
 
 
 
+        Label tip_label = new Label("serve tip: clicking\non a movement button\nfirst directs the ball.");
+        tip_label.setFont(new Font("Times New Roman", 15));
+        tip_label.setTextFill(Color.WHITE);
+
+        VBox tip_panel = new VBox();
+        tip_panel.setAlignment(Pos.BOTTOM_RIGHT);
+        tip_panel.getChildren().add(tip_label);
+
+
+
         HBox controls_panel = new HBox(120);
         controls_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
-        controls_panel.getChildren().addAll(back_button, control1_panel, control2_panel);
+        controls_panel.getChildren().addAll(back_button, control1_panel, control2_panel, tip_panel);
 
 
 

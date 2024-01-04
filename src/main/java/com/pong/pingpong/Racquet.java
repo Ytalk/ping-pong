@@ -16,6 +16,7 @@ public abstract class Racquet{
     private Rectangle racquet;
     protected boolean serve = false;
     protected boolean serve2 = false;
+    private int direct_ball = 0;
 
     /**
      * Initializes the racquet with a name and initial X position (defines the racquet's side).
@@ -54,6 +55,8 @@ public abstract class Racquet{
     public void moveUp(){
         py = py - 5.5;
         racquet.setTranslateY(py);
+
+        direct_ball = -1;
     }
 
 
@@ -63,6 +66,49 @@ public abstract class Racquet{
     public void moveDown(){
         py = py + 5.5;
         racquet.setTranslateY(py);
+
+        direct_ball = 1;
+    }
+
+
+    public double directedDeltaY(double deltaY){
+
+        if(deltaY > 0){//vindo de baixo
+            if(direct_ball > 0){//baixo
+                return deltaY;
+            }
+
+            else if(direct_ball < 0){//cima
+                return deltaY * -1;
+            }
+        }
+
+        else if(deltaY < 0){//vindo de cima
+            if(direct_ball > 0){//baixo
+                return deltaY * -1;
+            }
+
+            else if(direct_ball < 0){//cima
+                return deltaY;
+            }
+        }
+
+        else{//vindo do center
+            if(direct_ball > 0){//baixo
+                return deltaY + 1;
+            }
+
+            else if(direct_ball < 0){//cima
+                return deltaY + (-1);
+            }
+        }
+
+        return 0;//centro
+    }
+
+
+    public void setDirectBallCenter(){
+        direct_ball = 0;
     }
 
 
@@ -83,9 +129,9 @@ public abstract class Racquet{
      */
     public double ServeX(){
         if(px > 400)
-            return px - 11;
+            return px - 13;//11
         else
-            return (px + 21);
+            return (px + 23);//21
     }
 
 

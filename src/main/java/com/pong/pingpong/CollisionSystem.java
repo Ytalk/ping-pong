@@ -50,8 +50,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class CollisionSystem{
 
-    private double deltaX = 1;  //start
-    private double deltaY = 0.5;
+    private double deltaX = -1;  //start
+    private double deltaY = 0;
 
     private Wall lower_wall;
     private Wall upper_wall;
@@ -95,8 +95,15 @@ public class CollisionSystem{
             @Override
             public void handle(long now){
 
-                if (checkCollision(player.getRacquet(), ball.getBall()) || checkCollision(player2.getRacquet(), ball.getBall())) {
+                if( checkCollision(player.getRacquet(), ball.getBall()) ){
                     deltaX = deltaX * -1;
+                    deltaY = player.directedDeltaY(deltaY);
+                    ball.speedUp();
+                }
+
+                if( checkCollision(player2.getRacquet(), ball.getBall()) ){
+                    deltaX = deltaX * -1;
+                    deltaY = player2.directedDeltaY(deltaY);
                     ball.speedUp();
                 }
 

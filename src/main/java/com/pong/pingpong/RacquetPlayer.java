@@ -76,6 +76,7 @@ public class RacquetPlayer extends Racquet{
      */
     public void handleKeyReleased(Set<KeyCode> keysPressed, KeyEvent event){
         keysPressed.remove(event.getCode());
+        setDirectBallCenter();
     }
 
 }
