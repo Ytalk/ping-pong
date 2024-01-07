@@ -91,9 +91,10 @@ public class ControlsScene{
 
 
 
-        Label tip_label = new Label("serve tip: clicking\non a movement button\nfirst directs the ball.");
+        Label tip_label = new Label("Tip: Clicking a\nmovement button\nsimultaneously with\n the serve will\ndirect the ball.");
         tip_label.setFont(new Font("Times New Roman", 15));
         tip_label.setTextFill(Color.WHITE);
+        tip_label.getStyleClass().add("tip-mon");
 
         VBox tip_panel = new VBox();
         tip_panel.setAlignment(Pos.BOTTOM_RIGHT);
@@ -101,7 +102,7 @@ public class ControlsScene{
 
 
 
-        HBox controls_panel = new HBox(120);
+        HBox controls_panel = new HBox(125);
         controls_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
         controls_panel.getChildren().addAll(back_button, control1_panel, control2_panel, tip_panel);
 

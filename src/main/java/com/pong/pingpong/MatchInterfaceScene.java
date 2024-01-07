@@ -17,6 +17,9 @@ import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ChoiceBox;
 
+
+import com.jfoenix.controls.JFXTextField;
+
 /**
  * The `MatchInterfaceScene` class is responsible for creating a scene where the user can enter player names, select a game mode, and set the goal score.
  * It also handles error checking and confirmation of the selected options.
@@ -63,8 +66,8 @@ public class MatchInterfaceScene{
         name1_label.setTextFill(Color.WHITE);
 
         TextField name1_field = new TextField();
-        name1_field.setPrefWidth(150);
-        //this.score1_field.setPrefHeight(100);
+        name1_field.setPromptText("Nickname here");
+        name1_field.getStyleClass().add("glamour-field");
 
 
         Label name2_label = new Label("Name P2");
@@ -72,7 +75,8 @@ public class MatchInterfaceScene{
         name2_label.setTextFill(Color.WHITE);
 
         TextField name2_field = new TextField();
-        name2_field.setPrefWidth(150);
+        name2_field.setPromptText("Nickname here");
+        name2_field.getStyleClass().add("glamour-field");
 
 
         VBox names_panel = new VBox(30);
@@ -87,7 +91,8 @@ public class MatchInterfaceScene{
         points_label.setTextFill(Color.WHITE);
 
         TextField points_field = new TextField();
-        points_field.setPrefWidth(150);
+        points_field.setPromptText("Score here");
+        points_field.getStyleClass().add("glamour-field");
         points_field.setAlignment(Pos.CENTER);
 
 
@@ -99,6 +104,7 @@ public class MatchInterfaceScene{
                 "PvP",
                 "bot"
         ));
+        mode_chbox.getStyleClass().add("choice-box");
 
         mode_chbox.setPrefWidth(150);
 
@@ -186,6 +192,8 @@ public class MatchInterfaceScene{
 
         Scene mi_scene = new Scene( mi_panel, window_width, window_height );
         mi_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/half-leaf-button.css").toExternalForm());
+        mi_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/modern-field.css").toExternalForm());
+        mi_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/modern-choice-box.css").toExternalForm());
         primaryStage.setScene(mi_scene);
     }
 }

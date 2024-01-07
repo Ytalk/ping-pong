@@ -69,10 +69,10 @@ public class Ball {
 
 
     /**
-     * Increases the speed of the ball by 0.8, up to a maximum of 20.
+     * Increases the speed of the ball by 0.8, up to a maximum of 15.
      */
     public void speedUp() {
-        if (speed < 20) {
+        if (speed < 15) {
             speed += 0.8;
         }
     }

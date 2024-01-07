@@ -44,7 +44,7 @@ public class PongFX extends Application{
         logo.setFitWidth(200);
 
 
-        Button play_button = new Button("Play Local");
+        JFXButton play_button = new JFXButton("Play Local");
         play_button.getStyleClass().add("menu-jfx-button");
         play_button.setOnAction(e -> {
             MatchInterfaceScene mi = new MatchInterfaceScene();
@@ -52,7 +52,7 @@ public class PongFX extends Application{
         });
 
 
-        Button controls_button = new Button("Controls");
+        JFXButton controls_button = new JFXButton("Controls");
         controls_button.getStyleClass().add("menu-jfx-button");
         controls_button.setOnAction(e -> {
             ControlsScene controls = new ControlsScene();
@@ -60,7 +60,7 @@ public class PongFX extends Application{
         });
 
 
-        Button exit_button = new Button("Exit");
+        JFXButton exit_button = new JFXButton("Exit");
         exit_button.getStyleClass().add("menu-jfx-button");
         exit_button.setOnAction( e -> primaryStage.close() );
 

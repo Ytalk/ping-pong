@@ -34,11 +34,9 @@ public class RacquetPlayer extends Racquet{
 
         if(control){
             if(keys_pressed.contains(KeyCode.Q)){
-                if(py > 10)
                     moveUp();
             }
             if(keys_pressed.contains(KeyCode.Z)){
-                if(py < 380)
                     moveDown();
             }
             if(serve){
@@ -51,11 +49,9 @@ public class RacquetPlayer extends Racquet{
 
         else{
             if(keys_pressed.contains(KeyCode.O)){
-                if(py > 10)
                     moveUp();
             }
             if(keys_pressed.contains(KeyCode.M)){
-                if(py < 380)
                     moveDown();
             }
             if(serve2){

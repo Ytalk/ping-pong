@@ -1,0 +1,29 @@
+.choice-box {
+    -fx-effect: dropshadow(gaussian, #333, 5, 0.5, 1, 1);
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-text-align: center;
+    -fx-text-decoration: underline;
+
+    -fx-border-radius: 10;
+    -fx-border-color: white;
+    -fx-border-width: 1;
+}
+
+.choice-box .arrow {
+    -fx-background-color: black;
+}
+
+
+.choice-box:focused {
+    -fx-border-radius: 10;
+    -fx-border-color: DodgerBlue;
+    -fx-border-width: 1;
+}
+
+.choice-box:focused .arrow {
+    -fx-background-color: DodgerBlue;
+}

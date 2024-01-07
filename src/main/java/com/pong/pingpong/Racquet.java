@@ -29,8 +29,11 @@ public abstract class Racquet{
         this.name = name;
 
         width = 10;
-        height = 60;
+        height = 70;
         racquet = new Rectangle(width, height, Color.BLACK);
+
+        racquet.setArcWidth(10);
+        racquet.setArcHeight(10);
 
         py = 200;
         px = positionX;
@@ -53,10 +56,13 @@ public abstract class Racquet{
      * Moves the racquet up by decreasing its y-coordinate.
      */
     public void moveUp(){
-        py = py - 5.5;
-        racquet.setTranslateY(py);
+        if(py > 20) {
 
-        direct_ball = -1;
+            py = py - 11.5;
+            racquet.setTranslateY(py);
+
+            direct_ball = -1;
+        }
     }
 
 
@@ -64,10 +70,12 @@ public abstract class Racquet{
      * Moves the racquet down by increasing its y-coordinate.
      */
     public void moveDown(){
-        py = py + 5.5;
-        racquet.setTranslateY(py);
+        if(py < 360) {
+            py = py + 11.5;
+            racquet.setTranslateY(py);
 
-        direct_ball = 1;
+            direct_ball = 1;
+        }
     }
 
 
@@ -129,9 +137,9 @@ public abstract class Racquet{
      */
     public double ServeX(){
         if(px > 400)
-            return px - 13;//11
+            return px - 11;//11
         else
-            return (px + 23);//21
+            return (px + 21);//21
     }
 
 
