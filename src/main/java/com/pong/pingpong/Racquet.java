@@ -58,7 +58,7 @@ public abstract class Racquet{
     public void moveUp(){
         if(py > 20) {
 
-            py = py - 11.5;
+            py = py - 8.5;
             racquet.setTranslateY(py);
 
             direct_ball = -1;
@@ -70,8 +70,8 @@ public abstract class Racquet{
      * Moves the racquet down by increasing its y-coordinate.
      */
     public void moveDown(){
-        if(py < 360) {
-            py = py + 11.5;
+        if(py < 365) {
+            py = py + 8.5;
             racquet.setTranslateY(py);
 
             direct_ball = 1;
@@ -81,37 +81,37 @@ public abstract class Racquet{
 
     public double directedDeltaY(double deltaY){
 
-        if(deltaY > 0){//vindo de baixo
-            if(direct_ball > 0){//baixo
+        if(deltaY > 0){//comming from down
+            if(direct_ball > 0){//down
                 return deltaY;
             }
 
-            else if(direct_ball < 0){//cima
+            else if(direct_ball < 0){//up
                 return deltaY * -1;
             }
         }
 
-        else if(deltaY < 0){//vindo de cima
-            if(direct_ball > 0){//baixo
+        else if(deltaY < 0){//coming from up
+            if(direct_ball > 0){//down
                 return deltaY * -1;
             }
 
-            else if(direct_ball < 0){//cima
+            else if(direct_ball < 0){//up
                 return deltaY;
             }
         }
 
-        else{//vindo do center
-            if(direct_ball > 0){//baixo
+        else{//coming from the center
+            if(direct_ball > 0){//down
                 return deltaY + 1;
             }
 
-            else if(direct_ball < 0){//cima
+            else if(direct_ball < 0){//up
                 return deltaY + (-1);
             }
         }
 
-        return 0;//centro
+        return 0;//center
     }
 
 
@@ -137,9 +137,9 @@ public abstract class Racquet{
      */
     public double ServeX(){
         if(px > 400)
-            return px - 11;//11
+            return px - 11;
         else
-            return (px + 21);//21
+            return (px + 21);
     }
 
 

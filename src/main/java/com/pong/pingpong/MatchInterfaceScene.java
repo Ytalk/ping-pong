@@ -47,7 +47,7 @@ public class MatchInterfaceScene{
 
     //NO CONSTRUCTOR
 
-    public void matchInterfaceScene(Stage primaryStage, int window_height, int window_width){
+    public void matchInterfaceScene(Stage primaryStage, int window_height, int window_width, Color bgcolor){
 
 
         Button back_button = new Button("BACK");
@@ -162,11 +162,11 @@ public class MatchInterfaceScene{
                         }
 
                         LocalPvPScene local_pvp = new LocalPvPScene();
-                        local_pvp.localPvpScene(primaryStage, window_height, window_width, name1_field.getText(), name2_field.getText(), goal);
+                        local_pvp.localPvpScene(primaryStage, window_height, window_width, bgcolor, name1_field.getText(), name2_field.getText(), goal);
                     }
                     else if( "bot".equals(mode_chbox.getValue()) ){
                         LocalPvBScene local_pvb = new LocalPvBScene();
-                        local_pvb.localPvbScene(primaryStage, window_height, window_width, name1_field.getText(), goal);
+                        local_pvb.localPvbScene(primaryStage, window_height, window_width, bgcolor, name1_field.getText(), goal);
                     }
                     else{
                         throw new MatchInterfaceException("no mode has been selected!", "MODE ERROR");
@@ -187,7 +187,7 @@ public class MatchInterfaceScene{
 
         //MI SCENE
         HBox mi_panel = new HBox(120);
-        mi_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
+        mi_panel.setBackground(  new Background( new BackgroundFill(bgcolor, CornerRadii.EMPTY, Insets.EMPTY) )  );
         mi_panel.getChildren().addAll(back_button, names_panel, pointsmode_panel, confirm_panel);
 
         Scene mi_scene = new Scene( mi_panel, window_width, window_height );

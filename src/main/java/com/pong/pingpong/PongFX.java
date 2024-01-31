@@ -2,7 +2,6 @@ package com.pong.pingpong;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.geometry.Pos;
@@ -31,6 +30,8 @@ public class PongFX extends Application{
 
     int window_height = 480;
     int window_width = 854;
+    public Color bgcolor = Color.web("777B7E");
+
 
     /**
      * Overrides the start method of the Application class. It creates the main menu scene and sets it as the primary stage's scene.
@@ -48,7 +49,7 @@ public class PongFX extends Application{
         play_button.getStyleClass().add("menu-jfx-button");
         play_button.setOnAction(e -> {
             MatchInterfaceScene mi = new MatchInterfaceScene();
-            mi.matchInterfaceScene(primaryStage, window_height, window_width);
+            mi.matchInterfaceScene(primaryStage, window_height, window_width, bgcolor);
         });
 
 
@@ -56,7 +57,7 @@ public class PongFX extends Application{
         controls_button.getStyleClass().add("menu-jfx-button");
         controls_button.setOnAction(e -> {
             ControlsScene controls = new ControlsScene();
-            controls.controlsScene(primaryStage, window_height, window_width);
+            controls.controlsScene(primaryStage, window_height, window_width, bgcolor);
         });
 
 
@@ -68,7 +69,7 @@ public class PongFX extends Application{
         VBox menu_panel = new VBox(20);
         menu_panel.setAlignment(Pos.CENTER);
         menu_panel.getChildren().addAll( logo, play_button, controls_button, exit_button );
-        menu_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
+        menu_panel.setBackground(  new Background( new BackgroundFill(bgcolor, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
 
         Scene menu_scene = new Scene(menu_panel, window_width, window_height);

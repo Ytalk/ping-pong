@@ -21,15 +21,10 @@ public class Ball {
      * Constructs a new Ball object with the given center coordinates and radius (size).
      * The initial/default speed is set to 3.
      *
-     * @param centerX the x-coordinate of the center of the ball
-     * @param centerY the y-coordinate of the center of the ball
-     * @param radius  the radius (size) of the ball
      */
-    public Ball(double centerX, double centerY, double radius) {
-        px = centerX;
-        py = centerY;
-        this.radius = radius;
-        speed = 3;
+    public Ball() {
+        this.radius = 10;
+        speed = 2;
         ball = new Circle(px, py, radius, Color.BLUE);
     }
 
@@ -91,10 +86,10 @@ public class Ball {
 
 
     /**
-     * Sets the speed of the ball back to the default value of 3.
+     * Sets the speed of the ball back to the default value of 2.
      */
     public void hurl() {
-        speed = 3;
+        speed = 2;
     }
 
 }

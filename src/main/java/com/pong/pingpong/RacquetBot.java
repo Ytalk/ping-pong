@@ -6,7 +6,7 @@ import javafx.animation.AnimationTimer;
 public class RacquetBot extends Racquet{
 
     private AnimationTimer bot_animation;
-    private double error_margin = 6.0;
+    private double error_margin = 9.0;
 
     public RacquetBot(String name, int positionX){
         super(name, positionX);

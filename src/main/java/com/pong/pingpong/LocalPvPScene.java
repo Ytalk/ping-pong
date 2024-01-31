@@ -36,15 +36,15 @@ public class LocalPvPScene{
      * @param name2 the name of player 2
      * @param goal the score needed to win the match
      */
-    public void localPvpScene(Stage primaryStage, int window_height, int window_width, String name1, String name2, int goal){
+    public void localPvpScene(Stage primaryStage, int window_height, int window_width, Color bgcolor, String name1, String name2, int goal){
 
         Pane play_panel = new Pane();
-        play_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
+        play_panel.setBackground(  new Background( new BackgroundFill(bgcolor, CornerRadii.EMPTY, Insets.EMPTY) )  );
 
 
         RacquetPlayer player = new RacquetPlayer(name1, 10, true);
         play_panel.getChildren().add( player.getRacquet() );
-        player.setServe(true);//o controle1 tem o privilégio de começar sacando
+        player.setServe(true);//control 1 has the privilege of starting by serving volleyball
 
         RacquetPlayer player2 = new RacquetPlayer(name2, 834, false);
         play_panel.getChildren().add( player2.getRacquet() );
@@ -52,10 +52,10 @@ public class LocalPvPScene{
         Wall upper_wall = new Wall(0, window_width);
         play_panel.getChildren().add( upper_wall.getWall() );
 
-        Wall lower_wall = new Wall(440, window_width);
+        Wall lower_wall = new Wall(445, window_width);
         play_panel.getChildren().add( lower_wall.getWall() );
 
-        Ball ball = new Ball(400, 200, 10);
+        Ball ball = new Ball();
         play_panel.getChildren().add( ball.getBall() );
 
 
@@ -65,32 +65,32 @@ public class LocalPvPScene{
         Scene pong_scene = new Scene( new VBox(scoreboard.getScoreboard(), play_panel), window_width, window_height );
 
 
-        //gerencia entrada de teclado para jogadores
+        //manages keyboard input to the player
         Set<KeyCode> keysPressed = new HashSet<>();
 
         pong_scene.setOnKeyPressed(event -> {
             keysPressed.add(event.getCode());
-            player.handleKeyPressed(keysPressed, ball);
-            player2.handleKeyPressed(keysPressed, ball);
         });
 
         pong_scene.setOnKeyReleased(event -> {
-            keysPressed.remove(event.getCode());
             player.handleKeyReleased(keysPressed, event);
             player2.handleKeyReleased(keysPressed, event);
         });
 
+        player.Move(keysPressed, ball);
+        player2.Move(keysPressed, ball);
+
 
         CollisionSystem collision = new CollisionSystem(lower_wall, upper_wall, player, player2);
-        collision.inertia(scoreboard, ball);//timer para comportamento da bola, colisões, movimento, saques e pontuações
+        collision.inertia(scoreboard, ball);//timer for ball behavior, collisions, movement, serves, and scores
 
 
-        Champion champ = new Champion(goal, player.getName(), player2.getName(), scoreboard, collision, null, primaryStage);
-        champ.findChampion();//timer para analisar se atingiu o objetivo
+        Champion champ = new Champion(goal, player, player.getName(), player2, player2.getName(), scoreboard, collision, null, primaryStage);
+        champ.findChampion();//timer to analyze if the goal has been achieved
 
 
         primaryStage.setScene(pong_scene);
-        play_panel.requestFocus();//nó recebe eventos do teclado focado
+        play_panel.requestFocus();//node receives events from the focused keyboard
 
     }
 

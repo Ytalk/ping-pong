@@ -112,7 +112,7 @@ public class CollisionSystem{
                 }
 
 
-                //FUNÇÃO DE SAQUE (IN PROGRESS)
+                //SERVE FUNCTION (SHOULD BE IMPROVED)
                 if( player.getServe() ){
                     while(count < 10000) {
                         //System.out.println("p1");

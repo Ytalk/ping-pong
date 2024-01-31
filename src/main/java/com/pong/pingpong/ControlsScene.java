@@ -33,7 +33,7 @@ public class ControlsScene{
      * @param window_height the height of the window
      * @param window_width the width of the window
      */
-    public void controlsScene(Stage primaryStage, int window_height, int window_width){
+    public void controlsScene(Stage primaryStage, int window_height, int window_width, Color bgcolor){
 
         control1 = new Label("CONTROL 1");
         control1.setFont(new Font("fantasy", 23));
@@ -103,7 +103,7 @@ public class ControlsScene{
 
 
         HBox controls_panel = new HBox(125);
-        controls_panel.setBackground(  new Background( new BackgroundFill(Color.DIMGRAY, CornerRadii.EMPTY, Insets.EMPTY) )  );
+        controls_panel.setBackground(  new Background( new BackgroundFill(bgcolor, CornerRadii.EMPTY, Insets.EMPTY) )  );
         controls_panel.getChildren().addAll(back_button, control1_panel, control2_panel, tip_panel);
 
 

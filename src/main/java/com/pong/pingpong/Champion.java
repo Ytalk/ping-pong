@@ -15,16 +15,17 @@ import javafx.scene.control.ButtonBar;
  */
 public class Champion{
 
-    private AnimationTimer animationTimer;
+    private AnimationTimer championAnimation;
     private int goal;
     private String name1;
     private String name2;
     private int score1 = 0;
     private int score2 = 0;
     private Scoreboard scoreboard;
-    private CollisionSystem cystem;
+    private CollisionSystem collision_sys;
     private Stage primaryStage;
     private RacquetBot bot;
+    private RacquetPlayer player1, player2;
 
     /**
      * Constructs a Champion object with the specified goal score, player names, scoreboard, collision system, and primary stage.
@@ -32,16 +33,18 @@ public class Champion{
      * @param name1 The name of player 1.
      * @param name2 The name of player 2.
      * @param scoreboard The scoreboard object that keeps track of the scores.
-     * @param cystem The collision system object that handles the game physics.
+     * @param collision_sys The collision system object that handles the game physics.
      * @param primaryStage The primary stage of the JavaFX application.
      */
-    public Champion(int goal, String name1, String name2, Scoreboard scoreboard, CollisionSystem cystem, RacquetBot bot, Stage primaryStage) {
+    public Champion(int goal, RacquetPlayer player1, String name1, RacquetPlayer player2, String name2, Scoreboard scoreboard, CollisionSystem collision_sys, RacquetBot bot, Stage primaryStage) {
         this.goal = goal;
         this.name1 = name1;
         this.name2 = name2;
         this.scoreboard = scoreboard;
-        this.cystem = cystem;
+        this.collision_sys = collision_sys;
         this.primaryStage = primaryStage;
+        this.player1 = player1;
+        this.player2 = player2;
         this.bot = bot;
     }
 
@@ -50,12 +53,7 @@ public class Champion{
      * Starts the AnimationTimer to determine the winner of the game.
      */
     public void findChampion(){
-        startTimer();
-    }
-
-
-    private void startTimer(){
-        animationTimer = new AnimationTimer(){
+        championAnimation = new AnimationTimer(){
             @Override
             public void handle(long now) {
 
@@ -63,27 +61,38 @@ public class Champion{
                 score2 = scoreboard.getScore2();
 
                 if(score1 >= goal){
-                    cystem.stopInertia();
+                    collision_sys.stopInertia();
 
                     if(bot != null)
                         bot.stopBot();
+
+                    if(player2 != null)
+                        player2.stopPlayer();
+
+                    player1.stopPlayer();
 
                     showWinnerPopup(name1);
-                    animationTimer.stop();
+                    championAnimation.stop();
                 }
+
                 if(score2 >= goal){
-                    cystem.stopInertia();
+                    collision_sys.stopInertia();
 
                     if(bot != null)
                         bot.stopBot();
 
+                    if(player2 != null)
+                        player2.stopPlayer();
+
+                    player1.stopPlayer();
+
                     showWinnerPopup(name2);
-                    animationTimer.stop();
+                    championAnimation.stop();
                 }
             }
         };
 
-        animationTimer.start();
+        championAnimation.start();
     }
 
 

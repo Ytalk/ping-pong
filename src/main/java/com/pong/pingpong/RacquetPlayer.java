@@ -1,5 +1,6 @@
 package com.pong.pingpong;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyCode;
 import java.util.Set;
 import javafx.scene.input.KeyEvent;
@@ -10,7 +11,8 @@ import javafx.scene.input.KeyEvent;
  */
 public class RacquetPlayer extends Racquet{
 
-    boolean control;
+    boolean control;//player 1 or 2
+    private AnimationTimer player_animation;
 
     /**
      * Constructs a RacquetPlayer object with the specified name, positionX, and control.
@@ -30,38 +32,31 @@ public class RacquetPlayer extends Racquet{
      * @param keys_pressed the set of keys that are currently pressed
      * @param ball the ball object in the game
      */
-    public void handleKeyPressed(Set<KeyCode> keys_pressed, Ball ball){
-
-        if(control){
-            if(keys_pressed.contains(KeyCode.Q)){
-                    moveUp();
+    public void handleKeyPressed(Set<KeyCode> keys_pressed, Ball ball) {
+        if (control) {
+            if (keys_pressed.contains(KeyCode.Q)) {
+                moveUp();
             }
-            if(keys_pressed.contains(KeyCode.Z)){
-                    moveDown();
+            if (keys_pressed.contains(KeyCode.Z)) {
+                moveDown();
             }
-            if(serve){
-                if(keys_pressed.contains(KeyCode.A)){
-                    ball.hurl();
-                    setServe(false);//serve disabled as it has already been performed
-                }
+            if (serve && keys_pressed.contains(KeyCode.A)) {
+                ball.hurl();
+                setServe(false);
             }
         }
-
-        else{
-            if(keys_pressed.contains(KeyCode.O)){
-                    moveUp();
+        else {
+            if (keys_pressed.contains(KeyCode.O)) {
+                moveUp();
             }
-            if(keys_pressed.contains(KeyCode.M)){
-                    moveDown();
+            if (keys_pressed.contains(KeyCode.M)) {
+                moveDown();
             }
-            if(serve2){
-                if(keys_pressed.contains(KeyCode.K)){
-                    ball.hurl();
-                    setServe2(false);//serve disabled as it has already been performed
-                }
+            if (serve2 && keys_pressed.contains(KeyCode.K)) {
+                ball.hurl();
+                setServe2(false);
             }
         }
-
     }
 
     /**
@@ -74,5 +69,25 @@ public class RacquetPlayer extends Racquet{
         keysPressed.remove(event.getCode());
         setDirectBallCenter();
     }
+
+
+    public void Move(Set<KeyCode> keysPressed, Ball ball) {
+
+        player_animation = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                handleKeyPressed(keysPressed, ball);
+            }
+        };
+        player_animation.start();
+    }
+
+
+    public void stopPlayer(){
+        if(player_animation != null) {
+            player_animation.stop();
+        }
+    }
+
 
 }
