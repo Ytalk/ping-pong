@@ -1,0 +1,13 @@
+.winner{
+    -fx-background-color: #b8e2f4; /* Cor de fundo */
+    -fx-padding: 10px;
+    -fx-pref-width: 25em; /* Largura preferencial */
+    -fx-pref-height: 10em; /* Altura preferencial */
+
+    -fx-border-color: black; /* Cor da borda */
+    -fx-border-width: 1px; /* Largura da borda */
+
+    -fx-font-family: 'Arial';
+    -fx-font-size: 13;
+    -fx-text-fill: #000000;
+}

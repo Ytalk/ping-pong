@@ -1,12 +1,11 @@
 package com.pong.pingpong;
 
 import javafx.animation.AnimationTimer;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.application.Platform;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ButtonBar;
 
 /**
  * The Champion class is responsible for determining the winner of a game and displaying a popup message with the winner's name.
@@ -98,10 +97,24 @@ public class Champion{
 
     private void showWinnerPopup(String winner){
         Platform.runLater(() -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.NONE);
             alert.setTitle("Game-Over");
             alert.setHeaderText(null);
             alert.setContentText(winner + " wins!");
+
+
+            //add icon
+            ImageView trophyImageView = new ImageView(new Image( getClass().getResourceAsStream( "/com/pong/pingpong/icons/trophy2.png" ) ));
+            trophyImageView.setFitWidth(60);
+            trophyImageView.setFitHeight(60);
+            alert.setGraphic(trophyImageView);
+
+            //define o ícone personalizado usando CSS
+            DialogPane dialog_pane = alert.getDialogPane();
+            dialog_pane.getStylesheets().add(
+                getClass().getResource("/com/pong/pingpong/css/custom-alert.css").toExternalForm()
+            );
+            dialog_pane.getStyleClass().add("winner");
 
             ButtonType okButton = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
             alert.getButtonTypes().setAll(okButton);
@@ -111,6 +124,12 @@ public class Champion{
                 PongFX return_main = new PongFX();
                 return_main.start(primaryStage);
                 alert.close();
+            });
+
+            //adicionar ouvinte ao evento de fechamento do Alert
+            alert.setOnHidden(event -> {
+                PongFX return_main = new PongFX();
+                return_main.start(primaryStage);
             });
 
             alert.showAndWait();
