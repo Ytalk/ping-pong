@@ -73,7 +73,7 @@ public class PongFX extends Application{
 
 
         Scene menu_scene = new Scene(menu_panel, window_width, window_height);
-        menu_scene.getStylesheets().add(getClass().getResource("/com/pong/pingpong/css/oval-button.css").toExternalForm());
+        menu_scene.getStylesheets().add(  getClass().getResource("/com/pong/pingpong/css/oval-button.css").toExternalForm()  );
         primaryStage.setTitle("Pong FX");
         primaryStage.getIcons().add(  new Image( getClass().getResourceAsStream("/com/pong/pingpong/icons/bgpfxlogo.png") )  );
         primaryStage.setScene(menu_scene);

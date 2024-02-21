@@ -1,24 +1,14 @@
-lrun:
+run:
 	./mvnw javafx:run
 
-lcompile:
+compile:
 	./mvnw compile
 
-lreset:
+reset:
 	./mvnw clean install
 
 lpermission:
 	chmod +x mvnw
-
-
-wrun:
-	mvnw.cmd javafx:run
-
-wcompile:
-	mvnw.cmd compile
-
-wreset:
-	mvnw.cmd clean install
 
 
 allmvn:

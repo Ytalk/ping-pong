@@ -9,11 +9,14 @@
 **Pong FX** is a project with the aim of taking advantage of the holidays to develop ping pong (online and offline) in Java, organized in Maven. It uses JavaFX and JFoenix libraries, in addition to the Spring Boot framework. The game must contain local mode, and online with a room system hosted on a website. Varied game mechanics/modes and match customization.
 
 
-- It is “Control 1” that starts playing the match, and when a player scores, the opponent will have control of the ball. Once the objective score is reached, a pop-up will inform you who won, and when you click “OK” you are redirected to the menu.
-![GIF game](src/main/resources/com/pong/pingpong/icons/pong.gif)
+- Demo with PvP: It is “Control 1” that starts playing the match, and when a player scores, the opponent will have control of the ball. Once the objective score is reached, a pop-up will inform you who won, and when you click “OK” you are redirected to the menu.
+![GIF game](src/main/resources/com/pong/pingpong/icons/pvp.gif)
+
+- Demo against bot: Depending on the direction the racket is going when it collides with the ball this will affect the Y axis of the ball.
+![GIF game](src/main/resources/com/pong/pingpong/icons/pvb.gif)
 
 - Interface to organize a match.
-![GIF play menu](src/main/resources/com/pong/pingpong/icons/play.gif)
+![GIF play menu](src/main/resources/com/pong/pingpong/icons/interface.gif)
 
 - Game controls information.
 ![GIF control menu](src/main/resources/com/pong/pingpong/icons/controls.gif)
@@ -23,7 +26,6 @@
 - [Java](https://docs.oracle.com/en/java/)
 - [JavaFX](https://openjfx.io)
 - [Maven](https://maven.apache.org)
-- [Spring Boot](https://spring.io/projects/spring-boot/)
 - [JFoenix](https://github.com/sshahine/JFoenix)
 
 ## 📄 Dependencies
@@ -48,10 +50,10 @@ $ cd ping-pong
 
 #Linux:
 $ make lpermission
-$ make lrun
+$ make run
 
 #Windows:
-$ make wrun
+$ make run
 ```
 
 <p align = "center">or</p>
@@ -64,5 +66,5 @@ $ chmod +x mvnw
 $ ./mvnw javafx:run
 
 #Windows:
-$ mvnw.cmd javafx:run
+$ ./mvnw javafx:run
 ```

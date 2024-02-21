@@ -2,6 +2,7 @@ package com.pong.pingpong;
 
 import javafx.scene.control.Label;
 import javafx.scene.Scene;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import  javafx.scene.text.Font;
@@ -91,7 +92,7 @@ public class ControlsScene{
 
 
 
-        Label tip_label = new Label("Tip: Clicking a\nmovement button\nsimultaneously with\n the serve will\ndirect the ball.");
+        Label tip_label = new Label("Tip: clicking a movement button when\nhitting the ball will direct the ball\n(including when serving).");
         tip_label.setFont(new Font("Times New Roman", 15));
         tip_label.setTextFill(Color.WHITE);
         tip_label.getStyleClass().add("tip-mon");
